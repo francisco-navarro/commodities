@@ -36,6 +36,9 @@ import { Currency } from '../model/currency';
       text-align: left;
       padding: 15px;
     }
+    .currency {
+      cursor: pointer;
+    }
     .currency .id{
       display: table-cell;
       min-width: 100px;
@@ -57,7 +60,7 @@ import { Currency } from '../model/currency';
     }
     .selected {
       font-weight: bold;
-      color: red;
+      color: #aaa;
     }
   `]
 })
