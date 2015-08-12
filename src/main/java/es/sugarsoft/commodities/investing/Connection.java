@@ -1,4 +1,4 @@
-package es.sugarsoft.commodities;
+package es.sugarsoft.commodities.investing;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,6 +11,10 @@ import java.util.List;
 import java.util.Map;
 
 public class Connection {
+	
+	public static final String DOMAIN = "investing.com";
+	public static final String CHART_URL ="http://sbcharts." + DOMAIN + "/charts_xml/jschart_sideblock_###_area.json";
+	public static final String TABLE_URL ="http://es." + DOMAIN + "/commodities/";
 
 	private int LENGHT = 1024;
 

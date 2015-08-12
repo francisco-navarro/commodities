@@ -1,4 +1,4 @@
-package es.sugarsoft.commodities;
+package es.sugarsoft.commodities.investing;
 
 import static org.junit.Assert.assertTrue;
 
@@ -10,6 +10,7 @@ import javax.xml.xpath.XPathExpressionException;
 import org.junit.Before;
 import org.junit.Test;
 
+import es.sugarsoft.commodities.investing.UrlTableEngine;
 import es.sugarsoft.commodities.resources.Commodity;
 
 public class UrlTableTest {
@@ -18,7 +19,7 @@ public class UrlTableTest {
 	
 	@Before
 	public void init() throws Exception{
-		urlTableEngine = new UrlTableEngine("http://es.investing.com/commodities/");
+		urlTableEngine = new UrlTableEngine(Connection.TABLE_URL);
 	}
 
 	@Test

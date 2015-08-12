@@ -1,4 +1,4 @@
-package es.sugarsoft.commodities;
+package es.sugarsoft.commodities.investing;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -9,13 +9,15 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import es.sugarsoft.commodities.investing.Connection;
+
 public class ConnectionTest {
 
 	private Connection engine;
 	
 	@Before
 	public void init() throws Exception{
-		engine = new Connection("http://sbcharts.investing.com/charts_xml/jschart_sideblock_169_area.json");
+		engine = new Connection(Connection.TABLE_URL);
 	}
 	
 	@Test

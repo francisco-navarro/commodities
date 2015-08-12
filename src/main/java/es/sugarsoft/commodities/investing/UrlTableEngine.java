@@ -1,10 +1,7 @@
-package es.sugarsoft.commodities;
+package es.sugarsoft.commodities.investing;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.xml.xpath.XPathExpressionException;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
