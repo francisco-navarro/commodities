@@ -6,8 +6,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.io.Reader;
-import java.io.UnsupportedEncodingException;
 import java.net.Socket;
 import java.net.URL;
 import java.net.URLConnection;
@@ -94,18 +92,20 @@ public class SocketConnection {
 			BufferedReader rd = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			String line;
 			while ((line = rd.readLine()) != null) {
-				System.out.println(line);
+				if(line.contains("{")){
+					json=line;
+				}else{
+					System.out.println(line);
+				}
 			}
 			wr.close();
 			rd.close();
-
-			json=line;
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			if (socket != null) {
 				socket.close();
-				;
 			}
 		}
 

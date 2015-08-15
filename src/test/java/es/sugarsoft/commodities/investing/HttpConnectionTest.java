@@ -10,7 +10,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import es.sugarsoft.commodities.investing.http.HttpConnection;
-import es.sugarsoft.commodities.investing.http.SocketConnection;
 
 public class HttpConnectionTest {
 

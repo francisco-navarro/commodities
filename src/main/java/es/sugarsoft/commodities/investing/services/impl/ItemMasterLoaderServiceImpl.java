@@ -15,12 +15,12 @@ import org.springframework.stereotype.Service;
 
 import es.sugarsoft.commodities.investing.ChartEngine;
 import es.sugarsoft.commodities.investing.http.HttpConnection;
-import es.sugarsoft.commodities.investing.http.SocketConnection;
 import es.sugarsoft.commodities.investing.services.ItemMasterLoaderService;
 import es.sugarsoft.commodities.resources.Item;
 import es.sugarsoft.commodities.resources.dao.ItemMasterDao;
 import es.sugarsoft.commodities.resources.deserializer.CommodityDeserializer;
 
+@SuppressWarnings("rawtypes")
 @Service("itemMasterLoaderService")
 public class ItemMasterLoaderServiceImpl implements ItemMasterLoaderService {
 

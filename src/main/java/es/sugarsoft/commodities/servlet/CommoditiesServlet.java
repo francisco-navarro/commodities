@@ -8,24 +8,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-import es.sugarsoft.commodities.investing.services.ItemUpdaterService;
-import es.sugarsoft.commodities.investing.services.impl.ItemUpdaterServiceImpl;
-
 public class CommoditiesServlet extends HttpServlet {
 	
-	@Autowired
-	private ItemUpdaterService itemUpdaterService;
+//	@Autowired
+//	private ItemUpdaterService itemUpdaterService;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {		
 		super.doGet(req, resp);
 	}
-
-	public void setItemUpdaterService(ItemUpdaterService itemUpdaterService) {
-		this.itemUpdaterService = itemUpdaterService;
-	}
+//
+//	public void setItemUpdaterService(ItemUpdaterService itemUpdaterService) {
+//		this.itemUpdaterService = itemUpdaterService;
+//	}
 
 	@Override
 	public void init(ServletConfig config) throws ServletException {		

@@ -2,8 +2,6 @@ package es.sugarsoft.commodities.resources.dao.h2;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.Date;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
