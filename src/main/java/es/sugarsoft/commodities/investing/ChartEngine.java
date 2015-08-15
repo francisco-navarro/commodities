@@ -5,10 +5,10 @@ import java.io.IOException;
 public class ChartEngine {
 	
 	
-	private Connection connection;
+	private HttpConnection connection;
 	
 	public ChartEngine(String id) throws Exception{
-		connection = new Connection(Connection.CHART_URL.replace("###", id));
+		connection = new HttpConnection(HttpConnection.CHART_URL.replace("###", id));
 	}
 	
 	public String getJson() throws IOException{

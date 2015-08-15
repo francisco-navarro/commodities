@@ -10,7 +10,7 @@ import java.net.URLConnection;
 import java.util.List;
 import java.util.Map;
 
-public class Connection {
+public class HttpConnection {
 	
 	public static final String DOMAIN = "investing.com";
 	public static final String CHART_URL ="http://sbcharts." + DOMAIN + "/charts_xml/jschart_sideblock_###_area.json";
@@ -20,10 +20,9 @@ public class Connection {
 
 	private URL url;
 	private URLConnection urlConn;
-	private String cookie;
 	private Map<String, List<String>> headers;
 
-	public Connection(String inputUrl) throws Exception{
+	public HttpConnection(String inputUrl) throws Exception{
 		url = new URL(inputUrl);
 		urlConn = url.openConnection();
 		urlConn.setRequestProperty("Accept","text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8");
@@ -34,9 +33,6 @@ public class Connection {
 		urlConn.connect();
 
 		headers = urlConn.getHeaderFields();
-//		for(String headerKey: headers.keySet()){
-//			System.out.println(headerKey + " " + headers.get(headerKey));
-//		}		
 
 	}
 

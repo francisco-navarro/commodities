@@ -13,11 +13,11 @@ import es.sugarsoft.commodities.resources.Commodity;
 public class UrlTableEngine {
 	
 	
-	private Connection connection;
+	private HttpConnection connection;
 	private Document doc;
 
 	public UrlTableEngine(String url) throws Exception {
-		connection = new Connection(url);	
+		connection = new HttpConnection(url);	
 		
 		doc = Jsoup.parse(connection.getOutput());
 		

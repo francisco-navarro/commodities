@@ -9,15 +9,15 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import es.sugarsoft.commodities.investing.Connection;
+import es.sugarsoft.commodities.investing.SocketConnection;
 
-public class ConnectionTest {
+public class SocketConnectionTest {
 
-	private Connection engine;
+	private SocketConnection engine;
 	
 	@Before
 	public void init() throws Exception{
-		engine = new Connection(Connection.TABLE_URL);
+		engine = new SocketConnection();
 	}
 	
 	@Test

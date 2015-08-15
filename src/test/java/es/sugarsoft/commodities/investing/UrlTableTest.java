@@ -19,7 +19,7 @@ public class UrlTableTest {
 	
 	@Before
 	public void init() throws Exception{
-		urlTableEngine = new UrlTableEngine(Connection.TABLE_URL);
+		urlTableEngine = new UrlTableEngine(HttpConnection.TABLE_URL);
 	}
 
 	@Test
