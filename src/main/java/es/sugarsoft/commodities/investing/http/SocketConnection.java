@@ -1,4 +1,4 @@
-package es.sugarsoft.commodities.investing;
+package es.sugarsoft.commodities.investing.http;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -19,19 +19,19 @@ public class SocketConnection {
 	private static final String DOMAIN = "investing.com";
 	private static final String TABLE_URL = "http://es." + DOMAIN + "/commodities/";
 
-	private int LENGHT = 1024;
-
 	private URL url;
 	private URLConnection urlConn;
 	private Map<String, List<String>> headers;
+	private long id;
+	private String json;
 
 	private String PHPSESSID;
 	private String fpros_popup;
 	private static final String COOKIE_CONSTANTS = "activeConsent-4=1.1; __PHPSESSID__; _gat=1; _gat_allSitesTracker=1; geoC=ES; SideBlockUser=a%3A2%3A%7Bs%3A10%3A%22stack_size%22%3Ba%3A1%3A%7Bs%3A11%3A%22last_quotes%22%3Bi%3A8%3B%7Ds%3A6%3A%22stacks%22%3Ba%3A1%3A%7Bs%3A11%3A%22last_quotes%22%3Ba%3A1%3A%7Bi%3A0%3Ba%3A3%3A%7Bs%3A7%3A%22pair_ID%22%3Bs%3A4%3A%228830%22%3Bs%3A10%3A%22pair_title%22%3Bs%3A0%3A%22%22%3Bs%3A9%3A%22pair_link%22%3Bs%3A17%3A%22%2Fcommodities%2Fgold%22%3B%7D%7D%7D%7D; __fpros_popup__; gtmFired=OK; _ga=GA1.2.1197578690.1439400630";
-	private static final String URI = "/common/modules/js_instrument_chart/api/data.php?symbol=Oro&pair_id=8830&chart_type=area&pair_interval=1800&candle_count=120&events=yes&volume_series=yes";
+	private static final String URI = "/common/modules/js_instrument_chart/api/data.php";
 
-	public SocketConnection() throws Exception {
-
+	public SocketConnection(long id) throws Exception {
+		this.id = id;
 		initConnection();
 		// Connect first connection to html
 		urlConn.connect();
@@ -78,28 +78,28 @@ public class SocketConnection {
 		return urlConn.getInputStream();
 	}
 
-	
 	private void getData() throws IOException {
-		
+
 		Socket socket = null;
-		
+
 		try {
-			
-			socket = new Socket(url.getHost(), url.getPort()==-1?80:url.getPort());
-			
-		    BufferedWriter wr = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream(), "UTF8"));		   
-		    wr.write(getDataPetition());
-		    wr.write("\r\n");
-		    wr.flush();
 
-		    BufferedReader rd = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-		    String line;
-		    while ((line = rd.readLine()) != null) {
-		      System.out.println(line);
-		    }
-		    wr.close();
-		    rd.close();
+			socket = new Socket(url.getHost(), url.getPort() == -1 ? 80 : url.getPort());
 
+			BufferedWriter wr = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream(), "UTF8"));
+			wr.write(getDataPetition());
+			wr.write("\r\n");
+			wr.flush();
+
+			BufferedReader rd = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+			String line;
+			while ((line = rd.readLine()) != null) {
+				System.out.println(line);
+			}
+			wr.close();
+			rd.close();
+
+			json=line;
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -113,7 +113,7 @@ public class SocketConnection {
 
 	private String getDataPetition() {
 		final String RETURN = "\r\n";
-		String output = "GET " + URI + " HTTP/1.1" + RETURN + "Host: es.investing.com" + RETURN
+		String output = "GET " + buildURI() + " HTTP/1.1" + RETURN + "Host: es.investing.com" + RETURN
 				+ "Connection: keep-alive" + RETURN + "Accept: application/json, text/javascript, */*; q=0.01" + RETURN
 				+ "X-Requested-With: XMLHttpRequest" + RETURN + "X-FirePHP-Version: 0.0.6" + RETURN
 				+ "User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.155 Safari/537.36"
@@ -124,4 +124,20 @@ public class SocketConnection {
 		return output;
 	}
 
+	private String buildURI() {
+
+		String uri = URI + "?";
+		uri += //"symbol=Oro" + "&" +
+				"pair_id=" +id+ "&" +
+				"chart_type=area" + "&" +
+				"pair_interval=1800" + "&" + 
+				"candle_count=25" + "&" +
+				"events=no" + "&" +
+				"volume_series=yes";
+		return uri;
+	}
+
+	public String getJson(){
+		return json;
+	}
 }

@@ -9,7 +9,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import es.sugarsoft.commodities.investing.SocketConnection;
+import es.sugarsoft.commodities.investing.http.SocketConnection;
 
 public class SocketConnectionTest {
 
@@ -17,7 +17,7 @@ public class SocketConnectionTest {
 	
 	@Before
 	public void init() throws Exception{
-		engine = new SocketConnection();
+		engine = new SocketConnection(8830l);
 	}
 	
 	@Test

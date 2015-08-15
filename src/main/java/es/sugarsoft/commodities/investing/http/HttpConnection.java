@@ -1,4 +1,4 @@
-package es.sugarsoft.commodities.investing;
+package es.sugarsoft.commodities.investing.http;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,7 +14,7 @@ public class HttpConnection {
 	
 	public static final String DOMAIN = "investing.com";
 	public static final String CHART_URL ="http://sbcharts." + DOMAIN + "/charts_xml/jschart_sideblock_###_area.json";
-	public static final String TABLE_URL ="http://es." + DOMAIN + "/commodities/";
+	public static final String TABLE_URL ="http://es." + DOMAIN + "/";
 
 	private int LENGHT = 1024;
 
@@ -63,6 +63,14 @@ public class HttpConnection {
 			/* ... */
 		}
 		return out.toString();
+	}
+	
+	public static String getTableUri(String table){
+		return TABLE_URL+table;
+	}
+	
+	public static String getSideChartUri(String id){
+		return CHART_URL.replace("###", id);
 	}
 
 }
