@@ -6,10 +6,11 @@
 	<display-name>Archetype Created Web Application</display-name>
 
 	<servlet>
-		<servlet-name>garden</servlet-name>
+		<servlet-name>CustomServlet</servlet-name>
 		<servlet-class>es.sugarsoft.commodities.servlet.CommoditiesServlet</servlet-class>
+		<load-on-startup>0</load-on-startup>
 	</servlet>
 
-	
+
 
 </web-app>

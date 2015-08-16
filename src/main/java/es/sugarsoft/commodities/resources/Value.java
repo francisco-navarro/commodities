@@ -7,6 +7,18 @@ public class Value implements Serializable {
 	private long time;
 	private double value;
 	
+	public Value(){
+		
+	}
+	
+	public Value(long time, double value) {
+		super();
+		this.time = time;
+		this.value = value;
+	}
+
+
+
 	public long getTime() {
 		return time;
 	}

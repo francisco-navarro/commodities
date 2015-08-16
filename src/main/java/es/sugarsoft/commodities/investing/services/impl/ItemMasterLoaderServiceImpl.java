@@ -18,7 +18,7 @@ import es.sugarsoft.commodities.investing.http.HttpConnection;
 import es.sugarsoft.commodities.investing.services.ItemMasterLoaderService;
 import es.sugarsoft.commodities.resources.Item;
 import es.sugarsoft.commodities.resources.dao.ItemMasterDao;
-import es.sugarsoft.commodities.resources.deserializer.CommodityDeserializer;
+import es.sugarsoft.commodities.resources.json.deserializer.CommodityDeserializer;
 
 @SuppressWarnings("rawtypes")
 @Service("itemMasterLoaderService")

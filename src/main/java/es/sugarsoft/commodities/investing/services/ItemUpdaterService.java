@@ -1,5 +1,7 @@
 package es.sugarsoft.commodities.investing.services;
 
+import es.sugarsoft.commodities.resources.Item;
+
 /**
  * @author fjnavarrol
  * 
@@ -13,6 +15,14 @@ public interface ItemUpdaterService {
 	 * conexión y realizando todo el proceso.
 	 * @param id
 	 */
-	void updateItem(Long id);
+	void updateItem(long id);
+
+	/**
+	 * Recoge los valores numéricos de un item
+	 * @param id
+	 * @param interval
+	 * @return
+	 */
+	Item getValues(long id, long interval);
 
 }

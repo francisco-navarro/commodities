@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import es.sugarsoft.commodities.investing.http.SocketConnection;
 import es.sugarsoft.commodities.investing.services.ItemUpdaterService;
+import es.sugarsoft.commodities.resources.Item;
 import es.sugarsoft.commodities.resources.dao.ItemDao;
 
 @SuppressWarnings("rawtypes")
@@ -26,7 +27,7 @@ public class ItemUpdaterServiceImpl implements ItemUpdaterService {
 	}
 
 	@Override
-	public void updateItem(Long id) {
+	public void updateItem(long id) {
 		try {
 
 			SocketConnection sConn = new SocketConnection(id);
@@ -51,5 +52,11 @@ public class ItemUpdaterServiceImpl implements ItemUpdaterService {
 			e.printStackTrace();
 
 		}
+	}
+
+	@Override
+	public Item getValues(long id, long interval) {
+
+		return itemDao.getValues(id, interval);
 	}
 }

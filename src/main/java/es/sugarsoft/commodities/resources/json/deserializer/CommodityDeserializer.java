@@ -1,4 +1,4 @@
-package es.sugarsoft.commodities.resources.deserializer;
+package es.sugarsoft.commodities.resources.json.deserializer;
 
 import org.jsoup.nodes.Element;
 
