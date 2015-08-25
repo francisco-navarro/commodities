@@ -20,6 +20,7 @@ public class ItemDaoImpl implements ItemDao {
 	private ConnectionManager connectionManager;
 
 	private static final String INSERT = "insert into ITEM (ID,DATE,VALUE) values (?,?,?)";
+	private static final String LIST_BY_SECTION = "SELECT I.ID FROM ITEM_MASTER I WHERE I.SECTION_ID = ?";
 	private static final String GET_VALUES = "select I.ID, VALUE, DATE,DESCRIPTION from ITEM I , ITEM_MASTER IM "
 			+ "where I.ID = IM.ID AND I.ID = ? order by DATE";
 
@@ -100,6 +101,44 @@ public class ItemDaoImpl implements ItemDao {
 		return item;
 	}
 
+	@Override
+	public List<Long> getValuesBySection(long idSection, long interval) {
+
+		List<Long> list = new ArrayList<>();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			ps = connectionManager.getConnection().prepareStatement(LIST_BY_SECTION);
+			ps.setLong(1, idSection);
+
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				list.add(rs.getLong(1));
+			}
+		} catch (SQLException e) {
+			try {
+				e.printStackTrace();
+				connectionManager.getConnection().rollback();
+			} catch (SQLException e1) {
+			}
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (ps != null) {
+					ps.close();
+				}
+			} catch (SQLException e) {
+			}
+		}
+		
+		return list;
+		
+	}
+	
 	private Value getNumericValue(ResultSet rs) throws SQLException {
 		double value = rs.getDouble("VALUE");
 		long time = rs.getTimestamp("DATE").getTime();

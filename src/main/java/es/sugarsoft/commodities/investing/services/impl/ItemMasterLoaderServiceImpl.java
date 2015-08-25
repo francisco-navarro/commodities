@@ -1,5 +1,6 @@
 package es.sugarsoft.commodities.investing.services.impl;
 
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -25,7 +26,8 @@ import es.sugarsoft.commodities.resources.json.deserializer.CommodityDeserialize
 public class ItemMasterLoaderServiceImpl implements ItemMasterLoaderService {
 
 	private static final String MAIN_TABLE = "#dailyTab > tbody > tr";
-
+	private static final String SECOND_TABLE = "#cross_rate_1 > tbody > tr";
+	
 	private ItemMasterDao itemMasterDao;
 	private JSONParser parser;
 
@@ -36,13 +38,13 @@ public class ItemMasterLoaderServiceImpl implements ItemMasterLoaderService {
 	}
 
 	@Override
-	public void loadTableItems(String table) {
+	public void loadTableItems(String market, String table) {
 
 		HttpConnection connection = null;
 		Document doc = null;
-		String url = HttpConnection.getTableUri(table);
 
 		try {
+			String url = HttpConnection.getTableUri(market + "/" + URLEncoder.encode(table, "UTF-8"));
 
 			connection = new HttpConnection(url);
 			doc = Jsoup.parse(connection.getOutput());
@@ -62,6 +64,10 @@ public class ItemMasterLoaderServiceImpl implements ItemMasterLoaderService {
 
 		List<Item> list = new ArrayList<Item>();
 		Elements elems = doc.select(MAIN_TABLE);
+		
+		if(elems.size() == 0){
+			elems = doc.select(SECOND_TABLE);
+		}
 
 		for (int i = 0; i < elems.size(); i++) {
 			Item c = CommodityDeserializer.deserialize(elems.get(i));

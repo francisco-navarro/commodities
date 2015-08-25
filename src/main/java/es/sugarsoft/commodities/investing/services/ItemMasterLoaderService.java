@@ -11,6 +11,6 @@ public interface ItemMasterLoaderService {
 	 * Dada una uri, recorre la tabla en busca de sus elementos
 	 * @param uri
 	 */
-	void loadTableItems(String uri);
+	void loadTableItems(String market, String table);
 
 }

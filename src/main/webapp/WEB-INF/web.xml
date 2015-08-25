@@ -8,7 +8,7 @@
 	<servlet>
 		<servlet-name>CustomServlet</servlet-name>
 		<servlet-class>es.sugarsoft.commodities.servlet.CommoditiesServlet</servlet-class>
-		<load-on-startup>0</load-on-startup>
+		<!--  load-on-startup>0</load-on-startup-->
 	</servlet>
 
 

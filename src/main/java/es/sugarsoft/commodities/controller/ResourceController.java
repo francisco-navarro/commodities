@@ -24,13 +24,21 @@ public class ResourceController {
 
 	@Autowired
 	public ResourceController(ItemMasterLoaderService itemMasterLoaderService, ItemUpdaterService itemUpdaterService) {
-
 		this.itemMasterLoaderService = itemMasterLoaderService;
 		this.itemUpdaterService = itemUpdaterService;
 	}
+	
+	@RequestMapping(value = "/sections/{sectionId}/resources", method = RequestMethod.GET, produces = "application/json")
+	public @ResponseBody PageResource list(
+			@PathVariable("sectionId") Long sectionId,
+			HttpServletRequest request) {
+		
+		return null;
+	}
+
 
 	@RequestMapping(value = "/resource/{id}", method = RequestMethod.GET, produces = "application/json")
-	public @ResponseBody PageResource list(
+	public @ResponseBody PageResource getById(
 			HttpServletRequest request, 
 			@PathVariable("id") Long id,
 			@RequestParam(value="interval", required=false) Long interval) {
@@ -48,13 +56,6 @@ public class ResourceController {
 			e.printStackTrace();
 		}
 		return page;
-	}
-
-	@RequestMapping(value = "/table/{name}", method = RequestMethod.GET, produces = "application/json")
-	public @ResponseBody String updateItemMasterByTable(HttpServletRequest request, @PathVariable("name") String name) {
-		
-		itemMasterLoaderService.loadTableItems(name);
-		return null;
 	}
 
 	@RequestMapping(value = "/resource/{id}", method = RequestMethod.PUT, produces = "application/json")
