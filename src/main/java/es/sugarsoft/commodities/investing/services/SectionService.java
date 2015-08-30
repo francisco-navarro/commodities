@@ -8,4 +8,6 @@ public interface SectionService {
 
 	List<Section> getByParentId(Integer id);
 
+	Section get(long id);
+
 }

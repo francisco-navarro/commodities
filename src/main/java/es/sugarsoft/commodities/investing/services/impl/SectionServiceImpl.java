@@ -36,4 +36,10 @@ public class SectionServiceImpl implements SectionService {
 		return list;
 	}
 
+
+	@Override
+	public Section get(long id) {
+		return sectionDao.getById(id);
+	}
+
 }

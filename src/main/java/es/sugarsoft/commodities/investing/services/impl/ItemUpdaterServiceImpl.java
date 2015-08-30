@@ -45,7 +45,7 @@ public class ItemUpdaterServiceImpl implements ItemUpdaterService {
 				Double qty = new Double(value.get(1).toString());
 
 				itemDao.add(pairId, time, qty);
-				System.out.println(time + " " + qty);
+
 			}
 
 		} catch (Exception e) {

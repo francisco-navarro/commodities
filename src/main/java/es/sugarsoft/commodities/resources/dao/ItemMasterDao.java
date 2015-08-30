@@ -4,8 +4,10 @@ import es.sugarsoft.commodities.resources.Item;
 
 public interface ItemMasterDao {
 
-	void add(Item commodity);
 	
+	Item getById(long id);
+
+	void add(Item commodity, long sectionId);
 	
 
 }

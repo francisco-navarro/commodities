@@ -6,8 +6,8 @@ import es.sugarsoft.commodities.resources.Section;
 
 public interface SectionDao {
 	
-	public Section getById();
+	public Section getById(long id);
 	
-	public List<Section> getByParentId(int parentId);
+	public List<Section> getByParentId(long parentId);
 
 }

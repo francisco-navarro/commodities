@@ -8,9 +8,15 @@ package es.sugarsoft.commodities.investing.services;
 public interface ItemMasterLoaderService {
 
 	/**
-	 * Dada una uri, recorre la tabla en busca de sus elementos
+	 * Dada una parte de uri, recorre la tabla en busca de sus elementos
 	 * @param uri
 	 */
 	void loadTableItems(String market, String table);
+
+	/**
+	 * Dada una uri, recorre la tabla en busca de sus elementos
+	 * @param uri
+	 */
+	void loadTableItemsFromSectionId(long id);
 
 }

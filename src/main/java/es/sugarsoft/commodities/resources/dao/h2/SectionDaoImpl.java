@@ -28,12 +28,45 @@ public class SectionDaoImpl implements SectionDao {
 	}
 
 	@Override
-	public Section getById() {
-		throw new UnsupportedOperationException("Method not implemented");
+	public Section getById(long id) {
+		
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			ps = connectionManager.getConnection().prepareStatement(GET_BY_ID);
+			ps.setLong(1, id);
+
+			rs = ps.executeQuery();
+
+			if (rs.next()) {				
+				return getSection(rs);
+			}else{
+				return null;
+			}
+		} catch (SQLException e) {
+			try {
+				e.printStackTrace();
+				connectionManager.getConnection().rollback();
+			} catch (SQLException e1) {
+			}
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (ps != null) {
+					ps.close();
+				}
+			} catch (SQLException e) {
+			}
+		}
+		return null;
+		
 	}
 
 	@Override
-	public List<Section> getByParentId(int parentId) {
+	public List<Section> getByParentId(long parentId) {
 		
 		List<Section> list = new ArrayList<Section>();
 		PreparedStatement ps = null;
@@ -73,6 +106,7 @@ public class SectionDaoImpl implements SectionDao {
 		Section section = new Section();
 		section.setId(rs.getInt("ID"));
 		section.setDescription(rs.getString("DESCRIPTION"));
+		section.setUrl(rs.getString("URL"));
 		
 		return section;
 	}

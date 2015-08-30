@@ -17,7 +17,10 @@ import org.springframework.stereotype.Service;
 import es.sugarsoft.commodities.investing.ChartEngine;
 import es.sugarsoft.commodities.investing.http.HttpConnection;
 import es.sugarsoft.commodities.investing.services.ItemMasterLoaderService;
+import es.sugarsoft.commodities.investing.services.ItemUpdaterService;
+import es.sugarsoft.commodities.investing.services.SectionService;
 import es.sugarsoft.commodities.resources.Item;
+import es.sugarsoft.commodities.resources.Section;
 import es.sugarsoft.commodities.resources.dao.ItemMasterDao;
 import es.sugarsoft.commodities.resources.json.deserializer.CommodityDeserializer;
 
@@ -28,16 +31,23 @@ public class ItemMasterLoaderServiceImpl implements ItemMasterLoaderService {
 	private static final String MAIN_TABLE = "#dailyTab > tbody > tr";
 	private static final String SECOND_TABLE = "#cross_rate_1 > tbody > tr";
 	
+	private SectionService sectionService;
 	private ItemMasterDao itemMasterDao;
+	private ItemUpdaterService itemUpdaterService;
 	private JSONParser parser;
 
 	@Autowired
-	public ItemMasterLoaderServiceImpl(ItemMasterDao itemMasterDao) {
+	public ItemMasterLoaderServiceImpl(ItemMasterDao itemMasterDao,
+			SectionService sectionService,
+			ItemUpdaterService itemUpdaterService) {
 		parser=new JSONParser();
 		this.itemMasterDao = itemMasterDao;
+		this.sectionService = sectionService;
+		this.itemUpdaterService = itemUpdaterService;
 	}
 
 	@Override
+	@Deprecated
 	public void loadTableItems(String market, String table) {
 
 		HttpConnection connection = null;
@@ -51,13 +61,43 @@ public class ItemMasterLoaderServiceImpl implements ItemMasterLoaderService {
 			List<Item> list = getListFromDoc(doc);
 
 			for (Item commodity : list) {
-				itemMasterDao.add(commodity);
+				itemMasterDao.add(commodity, 2l);
+				itemUpdaterService.updateItem(commodity.getId());
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
+	}
+	
+	@Override
+	public void  loadTableItemsFromSectionId(long id){
+
+		HttpConnection connection = null;
+		Document doc = null;
+
+		try {
+			String url = getUriFromSectionId(id);
+
+			connection = new HttpConnection(url);
+			doc = Jsoup.parse(connection.getOutput());
+			List<Item> list = getListFromDoc(doc);
+
+			for (Item commodity : list) {
+				itemMasterDao.add(commodity,id);
+				itemUpdaterService.updateItem(commodity.getId());
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	private String getUriFromSectionId(long id) {
+		Section section = sectionService.get(id);
+		return section.getUrl();
 	}
 
 	private List<Item> getListFromDoc(Element doc) throws Exception {

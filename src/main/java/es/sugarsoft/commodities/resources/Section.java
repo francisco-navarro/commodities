@@ -8,6 +8,7 @@ public class Section implements Serializable {
 	private Integer id;
 	private Integer parentId;
 	private String description;
+	private String url;
 	private List<Long> resources;
 	
 	public Section(){
@@ -37,6 +38,12 @@ public class Section implements Serializable {
 	}
 	public void setResources(List<Long> resources) {
 		this.resources = resources;
+	}
+	public String getUrl() {
+		return url;
+	}
+	public void setUrl(String url) {
+		this.url = url;
 	}
 	
 

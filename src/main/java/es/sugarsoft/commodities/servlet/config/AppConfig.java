@@ -18,6 +18,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @ComponentScan({"es.sugarsoft.commodities.controller",
 	"es.sugarsoft.commodities.resources.dao.h2",
 	"es.sugarsoft.commodities.resources.dao.jndi",
+	"es.sugarsoft.commodities.workers.config",
 	"es.sugarsoft.commodities.investing.services.impl"}) 
 @EnableWebMvc   
 public class AppConfig extends WebMvcConfigurationSupport {
