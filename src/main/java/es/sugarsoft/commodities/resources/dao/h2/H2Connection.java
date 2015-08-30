@@ -4,11 +4,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.Properties;
 
-import org.springframework.stereotype.Service;
-
 import es.sugarsoft.commodities.resources.ConnectionManager;
 
-@Service("connectionManager")
+
 public class H2Connection implements ConnectionManager{
 
 	private Connection connection;
