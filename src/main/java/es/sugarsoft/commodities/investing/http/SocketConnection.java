@@ -95,7 +95,7 @@ public class SocketConnection {
 				if(line.contains("{")){
 					json=line;
 				}else{
-					System.out.println(line);
+					//System.out.println(line);
 				}
 			}
 			wr.close();
