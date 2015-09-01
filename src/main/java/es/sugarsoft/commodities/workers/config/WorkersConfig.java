@@ -23,7 +23,7 @@ public class WorkersConfig {
 	public static final String PARAMS_STRING = "PARAMS_STRING";
 
 
-	@Autowired
+	//@Autowired
 	public void init(ItemMasterLoaderService itemMasterLoader, WorkerDao workerDao){
 
 		WorkersConfig.itemMasterLoader = itemMasterLoader;
