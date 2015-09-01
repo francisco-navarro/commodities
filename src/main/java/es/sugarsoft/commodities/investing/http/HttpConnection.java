@@ -18,6 +18,7 @@ public class HttpConnection {
 
 	private int LENGHT = 1024;
 
+	private String status;
 	private URL url;
 	private URLConnection urlConn;
 	private Map<String, List<String>> headers;
@@ -33,7 +34,7 @@ public class HttpConnection {
 		urlConn.connect();
 
 		headers = urlConn.getHeaderFields();
-
+		status = headers.get(null).get(0);
 	}
 
 	public List<String> getHeader(String key){
@@ -44,25 +45,28 @@ public class HttpConnection {
 		return urlConn.getInputStream();
 	}
 
-	public String getOutput() throws IOException{
-		final char[] buffer = new char[LENGHT];
-		final StringBuilder out = new StringBuilder();
-		try{
-			Reader in = new InputStreamReader(urlConn.getInputStream(), "UTF-8");
-			for (;;) {
-				int rsz = in.read(buffer, 0, buffer.length);
-				if (rsz < 0)
-					break;
-				out.append(buffer, 0, rsz);
+	public String getOutput() throws IOException{	
+		if(status.matches("HTTP/1.[0-9] 2[0-9][0-9].*")){
+			final char[] buffer = new char[LENGHT];
+			final StringBuilder out = new StringBuilder();
+			try{
+				Reader in = new InputStreamReader(urlConn.getInputStream(), "UTF-8");
+				for (;;) {
+					int rsz = in.read(buffer, 0, buffer.length);
+					if (rsz < 0)
+						break;
+					out.append(buffer, 0, rsz);
+				}
 			}
+			catch (UnsupportedEncodingException ex) {
+				/* ... */
+			}
+			catch (IOException ex) {
+				/* ... */
+			}
+			return out.toString();
 		}
-		catch (UnsupportedEncodingException ex) {
-			/* ... */
-		}
-		catch (IOException ex) {
-			/* ... */
-		}
-		return out.toString();
+		return "{\"attr\":{}}";
 	}
 	
 	public static String getTableUri(String table){

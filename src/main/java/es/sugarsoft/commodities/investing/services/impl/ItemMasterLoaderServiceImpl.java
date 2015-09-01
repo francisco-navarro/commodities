@@ -100,7 +100,7 @@ public class ItemMasterLoaderServiceImpl implements ItemMasterLoaderService {
 		return section.getUrl();
 	}
 
-	private List<Item> getListFromDoc(Element doc) throws Exception {
+	private List<Item> getListFromDocOld(Element doc) throws Exception {
 
 		List<Item> list = new ArrayList<Item>();
 		Elements elems = doc.select(MAIN_TABLE);
@@ -113,6 +113,26 @@ public class ItemMasterLoaderServiceImpl implements ItemMasterLoaderService {
 			Item c = CommodityDeserializer.deserialize(elems.get(i));
 			c.setJson(getAdditionalData(c));
 			list.add(c);
+		}
+
+		return list;
+	}
+	
+	private List<Item> getListFromDoc(Element doc) throws Exception {
+
+		List<Item> list = new ArrayList<Item>();
+		Elements tables = doc.select("table");
+		
+		
+		for (int i = 0; i < tables.size(); i++) {
+			if(tables.get(i).hasAttr("tablesorter")){
+				Elements elems = tables.get(i).select("tbody > tr");
+				for(int j=0;j<elems.size();j++){
+					Item c = CommodityDeserializer.deserialize(elems.get(j));
+					c.setJson(getAdditionalData(c));
+					list.add(c);
+				}
+			}
 		}
 
 		return list;
