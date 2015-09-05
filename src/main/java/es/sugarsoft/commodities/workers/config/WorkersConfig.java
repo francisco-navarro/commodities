@@ -23,7 +23,7 @@ public class WorkersConfig {
 	public static final String PARAMS_STRING = "PARAMS_STRING";
 
 
-	//@Autowired
+	@Autowired
 	public void init(ItemMasterLoaderService itemMasterLoader, WorkerDao workerDao){
 
 		WorkersConfig.itemMasterLoader = itemMasterLoader;
@@ -37,13 +37,13 @@ public class WorkersConfig {
 			scheduler.start();
 
 			List<WorkerResource> workers = getWorkers();
-			for(WorkerResource job: workers ){
-				CronTrigger trigger = new CronTrigger();
-				trigger.setName(job.getDescription()+ job.getParams());
-				trigger.setCronExpression("0 "+minute+" * * * ?");				
-				System.out.println("Register "+job.toString());
-				scheduler.scheduleJob(job.getJobDetail(), trigger);				
-			}
+//			for(WorkerResource job: workers ){
+//				CronTrigger trigger = new CronTrigger();
+//				trigger.setName(job.getDescription()+ job.getParams());
+//				trigger.setCronExpression("0 "+minute+" * * * ?");				
+//				System.out.println("Register "+job.toString());
+//				scheduler.scheduleJob(job.getJobDetail(), trigger);				
+//			}
 		}catch(Exception e){
 			e.printStackTrace();
 		}
