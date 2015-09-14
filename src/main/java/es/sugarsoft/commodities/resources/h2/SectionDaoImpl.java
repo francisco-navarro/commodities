@@ -1,4 +1,4 @@
-package es.sugarsoft.commodities.resources.dao.h2;
+package es.sugarsoft.commodities.resources.h2;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

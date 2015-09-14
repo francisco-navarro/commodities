@@ -24,7 +24,7 @@ public class WorkersConfig {
 
 
 	@Autowired
-	public void init(ItemMasterLoaderService itemMasterLoader, WorkerDao workerDao){
+	public void init(/*ItemMasterLoaderService itemMasterLoader,*/ WorkerDao workerDao){
 
 		WorkersConfig.itemMasterLoader = itemMasterLoader;
 		this.workerDao = workerDao;
