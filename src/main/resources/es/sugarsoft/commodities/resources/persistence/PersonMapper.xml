@@ -3,7 +3,7 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace="es.sugarsoft.commodities.resources.persistence.PersonMapper">
-	<select id="getByFirstName" parameterType="string" resultType="Person">
+	<select id="getByFirstName" parameterType="string" resultType="es.sugarsoft.test.support.domain.Person">
 		select * from PEOPLE where PEOPLE.FIRSTNAME = #{firstname}
 	</select>
 </mapper>

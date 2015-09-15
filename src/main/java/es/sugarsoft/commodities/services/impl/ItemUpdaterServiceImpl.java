@@ -1,4 +1,4 @@
-package es.sugarsoft.commodities.investing.services.impl;
+package es.sugarsoft.commodities.services.impl;
 
 import java.util.Map;
 
@@ -9,9 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import es.sugarsoft.commodities.investing.http.SocketConnection;
-import es.sugarsoft.commodities.investing.services.ItemUpdaterService;
 import es.sugarsoft.commodities.resources.Item;
 import es.sugarsoft.commodities.resources.persistence.ItemDao;
+import es.sugarsoft.commodities.services.ItemUpdaterService;
 
 @SuppressWarnings("rawtypes")
 @Service("itemUpdaterService")

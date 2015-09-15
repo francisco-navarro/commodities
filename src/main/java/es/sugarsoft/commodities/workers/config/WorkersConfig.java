@@ -9,8 +9,9 @@ import org.quartz.impl.StdSchedulerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import es.sugarsoft.commodities.investing.services.ItemMasterLoaderService;
 import es.sugarsoft.commodities.resources.persistence.WorkerMapper;
+import es.sugarsoft.commodities.services.ItemMasterLoaderService;
+import es.sugarsoft.commodities.services.WorkerService;
 import es.sugarsoft.commodities.workers.resources.WorkerResource;
 
 @Component
@@ -18,7 +19,7 @@ public class WorkersConfig {
 	
 	private static ItemMasterLoaderService itemMasterLoader;
 	
-	private WorkerMapper workerDao;
+	private WorkerService workerService;
 	
 	public static final String PARAMS_STRING = "PARAMS_STRING";
 	
@@ -29,11 +30,12 @@ public class WorkersConfig {
 
 
 	@Autowired
-	public void init(ItemMasterLoaderService itemMasterLoader, WorkerMapper workerDao){
+	public void init(ItemMasterLoaderService itemMasterLoader, WorkerService workerService){
 
 		WorkersConfig.itemMasterLoader = itemMasterLoader;
-		this.workerDao = workerDao;
+		this.workerService = workerService;
 		
+		System.out.println(workerService.count());
 		try{
 			int minute = getActualMinute()+1;
 			
@@ -41,7 +43,6 @@ public class WorkersConfig {
 			Scheduler scheduler = new StdSchedulerFactory().getScheduler();
 			scheduler.start();
 			
-			workerDao.count();
 
 			List<WorkerResource> workers = getWorkers();
 //			for(WorkerResource job: workers ){
@@ -62,7 +63,7 @@ public class WorkersConfig {
 	}
 
 	private List<WorkerResource> getWorkers() {		
-		return workerDao.getAllSectionWorkers();
+		return workerService.getAllSectionWorkers();
 	}
 
 	

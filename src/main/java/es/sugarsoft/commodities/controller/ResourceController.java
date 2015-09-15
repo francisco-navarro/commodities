@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import es.sugarsoft.commodities.investing.services.ItemMasterLoaderService;
-import es.sugarsoft.commodities.investing.services.ItemUpdaterService;
 import es.sugarsoft.commodities.resources.Item;
 import es.sugarsoft.commodities.resources.json.PageResource;
+import es.sugarsoft.commodities.services.ItemMasterLoaderService;
+import es.sugarsoft.commodities.services.ItemUpdaterService;
 
 @Controller
 public class ResourceController {

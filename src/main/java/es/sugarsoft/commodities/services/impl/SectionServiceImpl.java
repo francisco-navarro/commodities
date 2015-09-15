@@ -1,14 +1,14 @@
-package es.sugarsoft.commodities.investing.services.impl;
+package es.sugarsoft.commodities.services.impl;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import es.sugarsoft.commodities.investing.services.SectionService;
 import es.sugarsoft.commodities.resources.Section;
 import es.sugarsoft.commodities.resources.persistence.ItemDao;
 import es.sugarsoft.commodities.resources.persistence.SectionDao;
+import es.sugarsoft.commodities.services.SectionService;
 
 @Service("sectionService")
 public class SectionServiceImpl implements SectionService {

@@ -1,4 +1,4 @@
-package es.sugarsoft.commodities.investing.services;
+package es.sugarsoft.commodities.services;
 
 import java.util.List;
 

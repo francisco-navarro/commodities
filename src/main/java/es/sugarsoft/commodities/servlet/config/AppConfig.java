@@ -12,6 +12,7 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
@@ -19,15 +20,21 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
-@Configuration 
-@MapperScan("es.sugarsoft.commodities.resources.persistence")
+import es.sugarsoft.commodities.resources.persistence.MyMapper;
+import es.sugarsoft.commodities.workers.config.MyBatisConfig;
+import es.sugarsoft.test.support.appconfig.DataSourceConfig;
+import es.sugarsoft.test.support.appconfig.DataSourceConfig;
+
+@Configuration
+@Import({DataSourceConfig.class, MyBatisConfig.class})
 @ComponentScan({
 	"es.sugarsoft.commodities.controller",
 	//"es.sugarsoft.commodities.resources.h2",
 	//"es.sugarsoft.commodities.resources.jndi",
 	"es.sugarsoft.commodities.workers.config",
-	"es.sugarsoft.commodities.investing.services.impl"
+	"es.sugarsoft.commodities.services.impl"
 	}) 
+@MapperScan(basePackageClasses = { MyMapper.class } )
 @EnableWebMvc
 public class AppConfig extends WebMvcConfigurationSupport {
 

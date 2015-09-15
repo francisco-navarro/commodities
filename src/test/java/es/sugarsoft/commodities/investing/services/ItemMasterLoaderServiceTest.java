@@ -12,10 +12,13 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.verification.VerificationMode;
 
-import es.sugarsoft.commodities.investing.services.impl.ItemMasterLoaderServiceImpl;
 import es.sugarsoft.commodities.resources.Item;
 import es.sugarsoft.commodities.resources.Section;
 import es.sugarsoft.commodities.resources.persistence.ItemMasterDao;
+import es.sugarsoft.commodities.services.ItemMasterLoaderService;
+import es.sugarsoft.commodities.services.ItemUpdaterService;
+import es.sugarsoft.commodities.services.SectionService;
+import es.sugarsoft.commodities.services.impl.ItemMasterLoaderServiceImpl;
 
 public class ItemMasterLoaderServiceTest {
 	

@@ -1,4 +1,4 @@
-package es.sugarsoft.commodities.test.support;
+package es.sugarsoft.commodities.workers.config;
 
 import javax.sql.DataSource;
 
@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import es.sugarsoft.commodities.test.support.mapper.MyMapper;
+import es.sugarsoft.commodities.resources.persistence.MyMapper;
 
 @Configuration
 @MapperScan(basePackageClasses = { MyMapper.class } )

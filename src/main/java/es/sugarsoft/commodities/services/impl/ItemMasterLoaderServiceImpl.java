@@ -1,4 +1,4 @@
-package es.sugarsoft.commodities.investing.services.impl;
+package es.sugarsoft.commodities.services.impl;
 
 import java.net.URLEncoder;
 import java.util.ArrayList;
@@ -16,13 +16,13 @@ import org.springframework.stereotype.Service;
 
 import es.sugarsoft.commodities.investing.ChartEngine;
 import es.sugarsoft.commodities.investing.http.HttpConnection;
-import es.sugarsoft.commodities.investing.services.ItemMasterLoaderService;
-import es.sugarsoft.commodities.investing.services.ItemUpdaterService;
-import es.sugarsoft.commodities.investing.services.SectionService;
 import es.sugarsoft.commodities.resources.Item;
 import es.sugarsoft.commodities.resources.Section;
 import es.sugarsoft.commodities.resources.json.deserializer.CommodityDeserializer;
 import es.sugarsoft.commodities.resources.persistence.ItemMasterDao;
+import es.sugarsoft.commodities.services.ItemMasterLoaderService;
+import es.sugarsoft.commodities.services.ItemUpdaterService;
+import es.sugarsoft.commodities.services.SectionService;
 
 @SuppressWarnings("rawtypes")
 @Service("itemMasterLoaderService")

@@ -1,4 +1,4 @@
-package es.sugarsoft.commodities.investing.services;
+package es.sugarsoft.commodities.services;
 
 /**
  * @author fjnavarrol

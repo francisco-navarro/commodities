@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import es.sugarsoft.commodities.investing.services.SectionService;
 import es.sugarsoft.commodities.resources.Section;
+import es.sugarsoft.commodities.services.SectionService;
 
 @Controller
 public class SectionController {
