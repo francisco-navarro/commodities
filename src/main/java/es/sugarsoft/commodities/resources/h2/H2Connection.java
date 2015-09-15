@@ -4,8 +4,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.Properties;
 
-import es.sugarsoft.commodities.resources.ConnectionManager;
-
 
 public class H2Connection implements ConnectionManager{
 

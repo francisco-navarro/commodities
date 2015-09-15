@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 
 import es.sugarsoft.commodities.investing.services.SectionService;
 import es.sugarsoft.commodities.resources.Section;
-import es.sugarsoft.commodities.resources.dao.ItemDao;
-import es.sugarsoft.commodities.resources.dao.SectionDao;
+import es.sugarsoft.commodities.resources.persistence.ItemDao;
+import es.sugarsoft.commodities.resources.persistence.SectionDao;
 
 @Service("sectionService")
 public class SectionServiceImpl implements SectionService {

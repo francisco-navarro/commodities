@@ -71,6 +71,8 @@
 			<scope>compile</scope>
 		</dependency>
 
+		
+
 		<dependency>
 			<groupId>cglib</groupId>
 			<artifactId>cglib</artifactId>

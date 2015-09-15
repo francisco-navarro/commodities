@@ -1,4 +1,4 @@
-package es.sugarsoft.commodities.resources.dao;
+package es.sugarsoft.commodities.resources.persistence;
 
 import java.util.List;
 

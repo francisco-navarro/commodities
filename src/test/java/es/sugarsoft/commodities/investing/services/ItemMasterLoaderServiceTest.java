@@ -15,7 +15,7 @@ import org.mockito.verification.VerificationMode;
 import es.sugarsoft.commodities.investing.services.impl.ItemMasterLoaderServiceImpl;
 import es.sugarsoft.commodities.resources.Item;
 import es.sugarsoft.commodities.resources.Section;
-import es.sugarsoft.commodities.resources.dao.ItemMasterDao;
+import es.sugarsoft.commodities.resources.persistence.ItemMasterDao;
 
 public class ItemMasterLoaderServiceTest {
 	

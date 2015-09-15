@@ -8,7 +8,7 @@ import javax.sql.DataSource;
 
 import org.springframework.stereotype.Service;
 
-import es.sugarsoft.commodities.resources.ConnectionManager;
+import es.sugarsoft.commodities.resources.h2.ConnectionManager;
 
 @Service("connectionManager")
 public class JNDIConnection implements ConnectionManager{

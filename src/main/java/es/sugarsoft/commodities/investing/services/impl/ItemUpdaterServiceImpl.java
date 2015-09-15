@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import es.sugarsoft.commodities.investing.http.SocketConnection;
 import es.sugarsoft.commodities.investing.services.ItemUpdaterService;
 import es.sugarsoft.commodities.resources.Item;
-import es.sugarsoft.commodities.resources.dao.ItemDao;
+import es.sugarsoft.commodities.resources.persistence.ItemDao;
 
 @SuppressWarnings("rawtypes")
 @Service("itemUpdaterService")

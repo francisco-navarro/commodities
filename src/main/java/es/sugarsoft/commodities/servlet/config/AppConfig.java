@@ -8,6 +8,7 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import org.mybatis.spring.SqlSessionFactoryBean;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -19,14 +20,15 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
 @Configuration 
+@MapperScan("es.sugarsoft.commodities.resources.persistence")
 @ComponentScan({
-//	"es.sugarsoft.commodities.controller",
-//	"es.sugarsoft.commodities.resources.dao.h2",
-//	"es.sugarsoft.commodities.resources.dao.jndi",
-//	"es.sugarsoft.commodities.workers.config"
-//	"es.sugarsoft.commodities.investing.services.impl"
+	"es.sugarsoft.commodities.controller",
+	//"es.sugarsoft.commodities.resources.h2",
+	//"es.sugarsoft.commodities.resources.jndi",
+	"es.sugarsoft.commodities.workers.config",
+	"es.sugarsoft.commodities.investing.services.impl"
 	}) 
-@EnableWebMvc   
+@EnableWebMvc
 public class AppConfig extends WebMvcConfigurationSupport {
 
 
@@ -48,18 +50,24 @@ public class AppConfig extends WebMvcConfigurationSupport {
 		MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
 		return converter;
 	}  
-
+	
 	@Bean
 	public DataSource dataSource() {
-		DataSource ds = null;
+		DataSource dataSource = getDatasource();
+		return dataSource;
+	}
+
+	private DataSource getDatasource() {
+		String resource = "jdbc/commodities";
+		Context initContext;
 		try {
-			Context initContext = new InitialContext();
+			initContext = new InitialContext();
 			Context envContext  = (Context)initContext.lookup("java:/comp/env");
-			ds = (DataSource)envContext.lookup("jdbc/commodities");
+			return (DataSource)envContext.lookup(resource);
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
-		return ds;
+		return null;
 	}
 
 	@Bean
@@ -74,5 +82,7 @@ public class AppConfig extends WebMvcConfigurationSupport {
 		sessionFactory.setTypeAliasesPackage("es.sugarsoft.commodities.resources");
 		return sessionFactory;
 	}
+
+	
 }
 
