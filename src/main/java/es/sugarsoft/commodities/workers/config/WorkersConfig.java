@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import es.sugarsoft.commodities.investing.services.ItemMasterLoaderService;
-import es.sugarsoft.commodities.resources.persistence.WorkerDao;
+import es.sugarsoft.commodities.resources.persistence.WorkerMapper;
 import es.sugarsoft.commodities.workers.resources.WorkerResource;
 
 @Component
@@ -18,18 +18,18 @@ public class WorkersConfig {
 	
 	private static ItemMasterLoaderService itemMasterLoader;
 	
-	private WorkerDao workerDao;
+	private WorkerMapper workerDao;
 	
 	public static final String PARAMS_STRING = "PARAMS_STRING";
 	
 	@Autowired
-	public void initTest( WorkerDao workerDao){
+	public void initTest( WorkerMapper workerDao){
 		System.out.println(workerDao);
 	}
 
 
 	@Autowired
-	public void init(ItemMasterLoaderService itemMasterLoader, WorkerDao workerDao){
+	public void init(ItemMasterLoaderService itemMasterLoader, WorkerMapper workerDao){
 
 		WorkersConfig.itemMasterLoader = itemMasterLoader;
 		this.workerDao = workerDao;
@@ -40,6 +40,8 @@ public class WorkersConfig {
 
 			Scheduler scheduler = new StdSchedulerFactory().getScheduler();
 			scheduler.start();
+			
+			workerDao.count();
 
 			List<WorkerResource> workers = getWorkers();
 //			for(WorkerResource job: workers ){
