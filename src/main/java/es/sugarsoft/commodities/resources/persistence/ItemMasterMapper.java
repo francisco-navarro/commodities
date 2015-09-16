@@ -5,9 +5,9 @@ import es.sugarsoft.commodities.resources.Item;
 public interface ItemMasterMapper {
 
 	
-	Item getById(long id);
+	Item getById(Long id);
 
-	void add(Item commodity, long sectionId);
+	void add(Item commodity, Long sectionId);
 	
 
 }

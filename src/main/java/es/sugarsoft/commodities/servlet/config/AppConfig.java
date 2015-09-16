@@ -27,7 +27,6 @@ import es.sugarsoft.test.support.appconfig.DataSourceConfig;
 import es.sugarsoft.test.support.appconfig.DataSourceConfig;
 
 @Configuration
-@Import({ MyBatisConfig.class})
 @ComponentScan({
 	"es.sugarsoft.commodities.controller",
 	//"es.sugarsoft.commodities.resources.h2",
@@ -88,9 +87,9 @@ public class AppConfig extends WebMvcConfigurationSupport {
 		SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
 		sessionFactory.setDataSource(dataSource());
 		sessionFactory.setTypeAliasesPackage("es.sugarsoft.commodities.resources");
-		Resource[] mapperLocations = new Resource[] { 
-				new ClassPathResource("classpath*:es/sugarsoft/commodities/resources/persistence/*.xml") };
-		sessionFactory.setMapperLocations(mapperLocations);
+//		Resource[] mapperLocations = new Resource[] { 
+//				new ClassPathResource("classpath*:es/sugarsoft/commodities/resources/persistence/*.xml") };
+//		sessionFactory.setMapperLocations(mapperLocations);
 		return sessionFactory;
 	}
 

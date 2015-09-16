@@ -4,15 +4,19 @@
 <mapper namespace="es.sugarsoft.commodities.resources.persistence.ItemMapper">
 
 	<select id="getValuesBySection" resultType="Long">
-		select 1 from dual
+		SELECT I.ID 
+			FROM ITEM_MASTER I WHERE I.SECTION_ID = #id#
 	</select>
 
 	<select id="getValues" resultType="Item">
-		select 1 from dual
+		select I.ID, VALUE, DATE,DESCRIPTION 
+		from ITEM I , ITEM_MASTER IM 
+			where I.ID = IM.ID AND I.ID =  #id# 
+			order by DATE
 	</select>
 
-	<insert id="add" parameterType="Item">
-		select 1 from dual
+	<insert id="add" parameterType="map">
+		insert into ITEM (ID,DATE,VALUE) values (#pairId#,#time#,#qty#)
 	</insert>
 
 

@@ -4,14 +4,13 @@
 <mapper namespace="es.sugarsoft.commodities.resources.persistence.SectionMapper">
 
 
-	<select id="getById" resultType="Section">
-	
+	<select id="getById" resultType="Section" parameterType="java.lang.Long">
+	SELECT * FROM SECTION WHERE ID = #id#
 
 	</select>
 	
-	<select id="getByParentId" resultType="Section">
-	
-
+	<select id="getByParentId" resultType="Section" parameterType="java.lang.Long">
+	SELECT * FROM SECTION WHERE PARENT_ID = #id#
 	</select>
 
 	
