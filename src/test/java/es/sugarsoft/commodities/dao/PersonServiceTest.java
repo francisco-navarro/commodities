@@ -12,9 +12,9 @@ import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import es.sugarsoft.commodities.workers.config.MyBatisConfig;
+import es.sugarsoft.commodities.resources.Person;
+import es.sugarsoft.commodities.servlet.config.MyBatisConfig;
 import es.sugarsoft.test.support.appconfig.DataSourceConfig;
-import es.sugarsoft.test.support.domain.Person;
 import es.sugarsoft.test.support.services.PersonService;
 
 @ContextConfiguration

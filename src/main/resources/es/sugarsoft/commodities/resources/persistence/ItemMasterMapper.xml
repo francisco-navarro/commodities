@@ -3,11 +3,12 @@
 
 <mapper namespace="es.sugarsoft.commodities.resources.persistence.ItemMasterMapper">
 
-	<cache />
 
-	<select id="getAllUsers" resultType="User">
+	<select id="getById" resultType="Item">
 		SELECT id, firstName, lastName, email FROM users
 	</select>
 
+	<insert id="add" parameterType="map">
+	</insert>
 	
 </mapper>

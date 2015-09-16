@@ -13,7 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import es.sugarsoft.commodities.services.WorkerService;
 import es.sugarsoft.commodities.services.impl.WorkerServiceImpl;
-import es.sugarsoft.commodities.workers.config.MyBatisConfig;
+import es.sugarsoft.commodities.servlet.config.MyBatisConfig;
 import es.sugarsoft.commodities.workers.resources.WorkerResource;
 import es.sugarsoft.test.support.appconfig.DataSourceConfig;
 

@@ -14,7 +14,7 @@ import org.mockito.verification.VerificationMode;
 
 import es.sugarsoft.commodities.resources.Item;
 import es.sugarsoft.commodities.resources.Section;
-import es.sugarsoft.commodities.resources.persistence.ItemMasterDao;
+import es.sugarsoft.commodities.resources.persistence.ItemMasterMapper;
 import es.sugarsoft.commodities.services.ItemMasterLoaderService;
 import es.sugarsoft.commodities.services.ItemUpdaterService;
 import es.sugarsoft.commodities.services.SectionService;
@@ -24,7 +24,7 @@ public class ItemMasterLoaderServiceTest {
 	
 	private ItemMasterLoaderService itemMasterLoaderService;
 	
-	private ItemMasterDao itemMasterDao = mock(ItemMasterDao.class);
+	private ItemMasterMapper itemMasterDao = mock(ItemMasterMapper.class);
 	private SectionService sectionService = mock(SectionService.class);
 	private ItemUpdaterService itemUpdaterService = mock(ItemUpdaterService.class);
 	

@@ -19,7 +19,7 @@ import es.sugarsoft.commodities.investing.http.HttpConnection;
 import es.sugarsoft.commodities.resources.Item;
 import es.sugarsoft.commodities.resources.Section;
 import es.sugarsoft.commodities.resources.json.deserializer.CommodityDeserializer;
-import es.sugarsoft.commodities.resources.persistence.ItemMasterDao;
+import es.sugarsoft.commodities.resources.persistence.ItemMasterMapper;
 import es.sugarsoft.commodities.services.ItemMasterLoaderService;
 import es.sugarsoft.commodities.services.ItemUpdaterService;
 import es.sugarsoft.commodities.services.SectionService;
@@ -32,12 +32,12 @@ public class ItemMasterLoaderServiceImpl implements ItemMasterLoaderService {
 	private static final String SECOND_TABLE = "#cross_rate_1 > tbody > tr";
 	
 	private SectionService sectionService;
-	private ItemMasterDao itemMasterDao;
+	private ItemMasterMapper itemMasterDao;
 	private ItemUpdaterService itemUpdaterService;
 	private JSONParser parser;
 
 	@Autowired
-	public ItemMasterLoaderServiceImpl(ItemMasterDao itemMasterDao,
+	public ItemMasterLoaderServiceImpl(ItemMasterMapper itemMasterDao,
 			SectionService sectionService,
 			ItemUpdaterService itemUpdaterService) {
 		parser=new JSONParser();

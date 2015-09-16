@@ -1,4 +1,4 @@
-package es.sugarsoft.commodities.workers.config;
+package es.sugarsoft.commodities.servlet.config;
 
 import javax.sql.DataSource;
 
@@ -22,7 +22,7 @@ public class MyBatisConfig {
     public SqlSessionFactory sqlSessionFactory() throws Exception {
         final SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
         sessionFactory.setDataSource(dataSource);
-        sessionFactory.setTypeAliasesPackage("es.sugarsoft.commodities.test.support.domain");
+        sessionFactory.setTypeAliasesPackage("es.sugarsoft.commodities.resources");
         return sessionFactory.getObject();
     }
 

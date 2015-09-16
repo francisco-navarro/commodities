@@ -4,7 +4,7 @@ import java.util.List;
 
 import es.sugarsoft.commodities.resources.Section;
 
-public interface SectionDao {
+public interface SectionMapper {
 	
 	public Section getById(long id);
 	

@@ -2,7 +2,7 @@ package es.sugarsoft.commodities.resources.persistence;
 
 import es.sugarsoft.commodities.resources.Item;
 
-public interface ItemMasterDao {
+public interface ItemMasterMapper {
 
 	
 	Item getById(long id);

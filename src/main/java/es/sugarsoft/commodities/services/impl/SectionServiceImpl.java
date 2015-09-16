@@ -6,21 +6,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import es.sugarsoft.commodities.resources.Section;
-import es.sugarsoft.commodities.resources.persistence.ItemDao;
-import es.sugarsoft.commodities.resources.persistence.SectionDao;
+import es.sugarsoft.commodities.resources.persistence.ItemMapper;
+import es.sugarsoft.commodities.resources.persistence.SectionMapper;
 import es.sugarsoft.commodities.services.SectionService;
 
 @Service("sectionService")
 public class SectionServiceImpl implements SectionService {
 	
-	private SectionDao sectionDao;
-	private ItemDao itemDao;
+	private SectionMapper sectionDao;
+	private ItemMapper itemDao;
 	
 	private static final long INTERVAL = 1l;
 	
 	@Autowired
-	public SectionServiceImpl(SectionDao sectionDao,
-			ItemDao itemDao) {
+	public SectionServiceImpl(SectionMapper sectionDao,
+			ItemMapper itemDao) {
 		super();
 		this.sectionDao = sectionDao;
 		this.itemDao = itemDao;

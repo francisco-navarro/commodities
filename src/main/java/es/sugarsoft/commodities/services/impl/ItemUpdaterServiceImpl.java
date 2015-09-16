@@ -10,18 +10,18 @@ import org.springframework.stereotype.Service;
 
 import es.sugarsoft.commodities.investing.http.SocketConnection;
 import es.sugarsoft.commodities.resources.Item;
-import es.sugarsoft.commodities.resources.persistence.ItemDao;
+import es.sugarsoft.commodities.resources.persistence.ItemMapper;
 import es.sugarsoft.commodities.services.ItemUpdaterService;
 
 @SuppressWarnings("rawtypes")
 @Service("itemUpdaterService")
 public class ItemUpdaterServiceImpl implements ItemUpdaterService {
 
-	private ItemDao itemDao;
+	private ItemMapper itemDao;
 	private JSONParser parser;
 
 	@Autowired
-	public ItemUpdaterServiceImpl(ItemDao itemDao) {
+	public ItemUpdaterServiceImpl(ItemMapper itemDao) {
 		parser = new JSONParser();
 		this.itemDao = itemDao;
 	}

@@ -4,7 +4,7 @@ import java.util.List;
 
 import es.sugarsoft.commodities.resources.Item;
 
-public interface ItemDao {
+public interface ItemMapper {
 
 	public void add(long pairId, long time, Double qty);
 

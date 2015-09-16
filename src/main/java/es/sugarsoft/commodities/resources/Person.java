@@ -1,4 +1,4 @@
-package es.sugarsoft.test.support.domain;
+package es.sugarsoft.commodities.resources;
 
 public class Person {
 

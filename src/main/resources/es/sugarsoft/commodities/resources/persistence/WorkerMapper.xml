@@ -3,7 +3,6 @@
 
 <mapper namespace="es.sugarsoft.commodities.resources.persistence.WorkerMapper">
 
-	<cache />
 
 	<select id="getAllSectionWorkers" resultType="es.sugarsoft.commodities.workers.resources.WorkerResource">
 		select worker_id as workerId,class,description,params,cron_expression as cronExpression
