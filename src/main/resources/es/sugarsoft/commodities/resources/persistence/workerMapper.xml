@@ -10,7 +10,7 @@
 			where w.ID=ws.WORKER_ID
 	</select>
 	
-	<select id="count" resultType="java.lang.Long">
+	<select id="count" resultType="Long">
 		select count(*) from WORKER
 	</select>
 	

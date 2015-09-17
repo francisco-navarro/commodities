@@ -5,11 +5,11 @@
 
 
 	<select id="getById" resultType="Item" parameterType="Long">
-		select * FROM ITEM_MASTER WHERE ID = #id#
+		select * FROM ITEM_MASTER WHERE ID = #{id}
 	</select>
 
 	<insert id="add" parameterType="map">
-		insert into ITEM_MASTER (ID,DESCRIPTION, JSON, SECTION_ID) values (#id#,#description#,#json#,#sectionId#)
+		insert into ITEM_MASTER (ID,DESCRIPTION, JSON, SECTION_ID) values (#{id},#{description},#{json},#{sectionId})
 	</insert>
 	
 </mapper>
