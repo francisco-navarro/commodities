@@ -5,7 +5,7 @@
 
 	<select id="getValuesBySection" resultType="Long">
 		SELECT I.ID 
-			FROM ITEM_MASTER I WHERE I.SECTION_ID = #{id}
+			FROM ITEM_MASTER I WHERE I.SECTION_ID = #{idSection}
 	</select>
 
 	<select id="getValues" resultType="Item">

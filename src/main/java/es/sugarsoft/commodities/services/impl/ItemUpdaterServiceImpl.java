@@ -1,5 +1,6 @@
 package es.sugarsoft.commodities.services.impl;
 
+import java.util.Date;
 import java.util.Map;
 
 import org.json.simple.JSONArray;
@@ -41,7 +42,7 @@ public class ItemUpdaterServiceImpl implements ItemUpdaterService {
 			JSONArray candles = (JSONArray) json.get("candles");
 			for (Object elem : candles.toArray()) {
 				JSONArray value = (JSONArray) elem;
-				long time = Long.valueOf((long) value.get(0));
+				Date time = new Date((long) value.get(0));
 				Double qty = new Double(value.get(1).toString());
 
 				itemDao.add(pairId, time, qty);
