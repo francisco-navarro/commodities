@@ -11,14 +11,14 @@ import es.sugarsoft.commodities.resources.Item;
 public interface ItemUpdaterService {
 
 	/**
-	 * Actualiza la tabla de los valores de item según un id, creando una nueva
-	 * conexión y realizando todo el proceso.
+	 * Actualiza la tabla de los valores de item segun un id, creando una nueva
+	 * conexion y realizando todo el proceso.
 	 * @param id
 	 */
 	void updateItem(long id);
 
 	/**
-	 * Recoge los valores numéricos de un item
+	 * Recoge los valores numericos de un item
 	 * @param id
 	 * @param interval
 	 * @return

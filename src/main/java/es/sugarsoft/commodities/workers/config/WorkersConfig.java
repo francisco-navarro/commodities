@@ -35,7 +35,6 @@ public class WorkersConfig {
 		WorkersConfig.itemMasterLoader = itemMasterLoader;
 		this.workerService = workerService;
 		
-		System.out.println(workerService.count());
 		try{
 			int minute = getActualMinute()+1;
 			

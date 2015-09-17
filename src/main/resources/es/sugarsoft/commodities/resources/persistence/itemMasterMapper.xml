@@ -9,7 +9,9 @@
 	</select>
 
 	<insert id="add" parameterType="map">
-		insert into ITEM_MASTER (ID,DESCRIPTION, JSON, SECTION_ID) values (#{id},#{description},#{json},#{sectionId})
+		insert into ITEM_MASTER (ID,DESCRIPTION, JSON, SECTION_ID)
+		values 
+		(#{commodity.id},#{commodity.description},#{commodity.json.bytes},#{sectionId})
 	</insert>
 	
 </mapper>

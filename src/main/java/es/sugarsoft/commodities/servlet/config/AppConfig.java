@@ -29,8 +29,6 @@ import es.sugarsoft.test.support.appconfig.DataSourceConfig;
 @Configuration
 @ComponentScan({
 	"es.sugarsoft.commodities.controller",
-	//"es.sugarsoft.commodities.resources.h2",
-	//"es.sugarsoft.commodities.resources.jndi",
 	"es.sugarsoft.commodities.workers.config",
 	"es.sugarsoft.commodities.services.impl"
 	}) 
@@ -87,9 +85,6 @@ public class AppConfig extends WebMvcConfigurationSupport {
 		SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
 		sessionFactory.setDataSource(dataSource());
 		sessionFactory.setTypeAliasesPackage("es.sugarsoft.commodities.resources");
-//		Resource[] mapperLocations = new Resource[] { 
-//				new ClassPathResource("classpath*:es/sugarsoft/commodities/resources/persistence/*.xml") };
-//		sessionFactory.setMapperLocations(mapperLocations);
 		return sessionFactory;
 	}
 
