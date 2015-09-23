@@ -12,6 +12,11 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.PathResource;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
@@ -26,11 +31,12 @@ import es.sugarsoft.commodities.resources.persistence.MyMapper;
 	"es.sugarsoft.commodities.controller",
 	"es.sugarsoft.commodities.workers.config",
 	"es.sugarsoft.commodities.services.impl"
-	}) 
+}) 
 @MapperScan(basePackageClasses = { MyMapper.class } )
 @EnableWebMvc
 public class AppConfig extends WebMvcConfigurationSupport {
-
+	
+	private ResourcePatternResolver resourcePatternResolver = new PathMatchingResourcePatternResolver();
 
 	@Bean
 	public RequestMappingHandlerMapping requestMappingHandlerMapping() {
@@ -50,7 +56,7 @@ public class AppConfig extends WebMvcConfigurationSupport {
 		MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
 		return converter;
 	}  
-	
+
 	@Bean
 	public DataSource dataSource() {
 		DataSource dataSource = getDatasource();
@@ -80,9 +86,19 @@ public class AppConfig extends WebMvcConfigurationSupport {
 		SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
 		sessionFactory.setDataSource(dataSource());
 		sessionFactory.setTypeAliasesPackage("es.sugarsoft.commodities.resources");
+		//		Resource[] mapperLocations = new Resource[] { 		
+		//								new ClassPathResource("classpath:es/sugarsoft/commodities/resources/persistence/itemMapper.xml"),
+		//								new ClassPathResource("classpath:es/sugarsoft/commodities/resources/persistence/itemMasterMapper.xml"),
+		//								new ClassPathResource("classpath:es/sugarsoft/commodities/resources/persistence/sectionMapper.xml"),
+		//								new ClassPathResource("classpath:es/sugarsoft/commodities/resources/persistence/workerMapper.xml")};		
+		//sessionFactory.setMapperLocations( mapperLocations);
+		sessionFactory.setMapperLocations(resourcePatternResolver.getResources("classpath:es/sugarsoft/commodities/resources/persistence/*Mapper.xml"));
+		//this.getClass().getClassLoader().getResource("es/sugarsoft/commodities/resources/persistence/itemMapper.xml")
+		//this.getClass().getClassLoader().getResource("es/sugarsoft/commodities/resources/persistence/ItemMapper.class")
+
 		return sessionFactory;
 	}
 
-	
+
 }
 
