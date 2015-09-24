@@ -10,7 +10,7 @@
 	</select>
 	
 	<select id="getByParentId" resultType="Section" parameterType="java.lang.Long">
-	SELECT * FROM SECTION WHERE PARENT_ID = #{id}
+	SELECT * FROM SECTION WHERE PARENT_ID = #{parentId}
 	</select>
 
 	
