@@ -9,7 +9,7 @@ import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import es.sugarsoft.commodities.investing.http.SocketConnection;
+import es.sugarsoft.commodities.investing.http.connection.SocketConnection;
 import es.sugarsoft.commodities.resources.Item;
 import es.sugarsoft.commodities.resources.persistence.ItemMapper;
 import es.sugarsoft.commodities.services.ItemUpdaterService;

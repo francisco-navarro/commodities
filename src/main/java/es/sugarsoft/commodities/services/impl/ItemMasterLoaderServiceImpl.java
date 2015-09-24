@@ -1,24 +1,18 @@
 package es.sugarsoft.commodities.services.impl;
 
 import java.net.URLEncoder;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import es.sugarsoft.commodities.investing.ChartEngine;
-import es.sugarsoft.commodities.investing.http.HttpConnection;
+import es.sugarsoft.commodities.investing.http.HttpTableParser;
+import es.sugarsoft.commodities.investing.http.connection.HtmlConnection;
 import es.sugarsoft.commodities.resources.Item;
 import es.sugarsoft.commodities.resources.Section;
-import es.sugarsoft.commodities.resources.json.deserializer.CommodityDeserializer;
 import es.sugarsoft.commodities.resources.persistence.ItemMasterMapper;
 import es.sugarsoft.commodities.services.ItemMasterLoaderService;
 import es.sugarsoft.commodities.services.ItemUpdaterService;
@@ -34,13 +28,13 @@ public class ItemMasterLoaderServiceImpl implements ItemMasterLoaderService {
 	private SectionService sectionService;
 	private ItemMasterMapper itemMasterDao;
 	private ItemUpdaterService itemUpdaterService;
-	private JSONParser parser;
+	private HttpTableParser httpTableParser = new HttpTableParser();
 
 	@Autowired
 	public ItemMasterLoaderServiceImpl(ItemMasterMapper itemMasterDao,
 			SectionService sectionService,
 			ItemUpdaterService itemUpdaterService) {
-		parser=new JSONParser();
+
 		this.itemMasterDao = itemMasterDao;
 		this.sectionService = sectionService;
 		this.itemUpdaterService = itemUpdaterService;
@@ -50,15 +44,14 @@ public class ItemMasterLoaderServiceImpl implements ItemMasterLoaderService {
 	@Deprecated
 	public void loadTableItems(String market, String table) {
 
-		HttpConnection connection = null;
-		Document doc = null;
+		HtmlConnection connection = null;
+		
 
 		try {
-			String url = HttpConnection.getTableUri(market + "/" + URLEncoder.encode(table, "UTF-8"));
+			String url = HtmlConnection.getTableUri(market + "/" + URLEncoder.encode(table, "UTF-8"));
 
-			connection = new HttpConnection(url);
-			doc = Jsoup.parse(connection.getOutput());
-			List<Item> list = getListFromDoc(doc);
+			connection = new HtmlConnection(url);			
+			List<Item> list = httpTableParser.getItems(connection.getOutput());
 
 			for (Item commodity : list) {
 				itemMasterDao.add(commodity, 2l);
@@ -74,15 +67,13 @@ public class ItemMasterLoaderServiceImpl implements ItemMasterLoaderService {
 	@Override
 	public void  loadTableItemsFromSectionId(long id){
 
-		HttpConnection connection = null;
-		Document doc = null;
-
+		HtmlConnection connection = null;
+		
 		try {
 			String url = getUriFromSectionId(id);
 
-			connection = new HttpConnection(url);
-			doc = Jsoup.parse(connection.getOutput());
-			List<Item> list = getListFromDoc(doc);
+			connection = new HtmlConnection(url);
+			List<Item> list = httpTableParser.getItems(connection.getOutput());
 
 			for (Item commodity : list) {
 				itemMasterDao.add(commodity,id);
@@ -98,59 +89,6 @@ public class ItemMasterLoaderServiceImpl implements ItemMasterLoaderService {
 	private String getUriFromSectionId(long id) {
 		Section section = sectionService.get(id);
 		return section.getUrl();
-	}
-
-	private List<Item> getListFromDocOld(Element doc) throws Exception {
-
-		List<Item> list = new ArrayList<Item>();
-		Elements elems = doc.select(MAIN_TABLE);
-		
-		if(elems.size() == 0){
-			elems = doc.select(SECOND_TABLE);
-		}
-
-		for (int i = 0; i < elems.size(); i++) {
-			Item c = CommodityDeserializer.deserialize(elems.get(i));
-			c.setJson(getAdditionalData(c));
-			list.add(c);
-		}
-
-		return list;
-	}
-	
-	private List<Item> getListFromDoc(Element doc) throws Exception {
-
-		List<Item> list = new ArrayList<Item>();
-		Elements tables = doc.select("table");
-		
-		
-		for (int i = 0; i < tables.size(); i++) {
-			if(tables.get(i).hasAttr("tablesorter")){
-				Elements elems = tables.get(i).select("tbody > tr");
-				for(int j=0;j<elems.size();j++){
-					Item c = CommodityDeserializer.deserialize(elems.get(j));
-					c.setJson(getAdditionalData(c));
-					list.add(c);
-				}
-			}
-		}
-
-		return list;
-	}
-
-	private String getAdditionalData(Item c) {
-		try {
-			
-			ChartEngine chart = new ChartEngine(c.getId());			
-			JSONObject json = (JSONObject) parser.parse(chart.getJson());			
-			
-			Map attributes =(Map) json.get("attr");
-
-			return attributes.toString();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
 	}
 
 }

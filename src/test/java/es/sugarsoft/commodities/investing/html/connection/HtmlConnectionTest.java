@@ -1,4 +1,4 @@
-package es.sugarsoft.commodities.investing;
+package es.sugarsoft.commodities.investing.html.connection;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -9,15 +9,15 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import es.sugarsoft.commodities.investing.http.HttpConnection;
+import es.sugarsoft.commodities.investing.http.connection.HtmlConnection;
 
-public class HttpConnectionTest {
+public class HtmlConnectionTest {
 
-	private HttpConnection engine;
+	private HtmlConnection engine;
 	
 	@Before
 	public void init() throws Exception{
-		engine = new HttpConnection(HttpConnection.TABLE_URL);
+		engine = new HtmlConnection(HtmlConnection.SECTION_URL);
 	}
 	
 	@Test

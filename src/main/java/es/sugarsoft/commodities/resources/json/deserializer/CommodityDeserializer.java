@@ -10,7 +10,7 @@ public class CommodityDeserializer {
 		Item c = new Item();			
 		c.setId(Long.valueOf(element.attr("id").replace("pair_", "")));
 		c.setDescription(element.select("a").get(0).attr("title"));
-		
+		c.setUrl(element.select("a").get(0).attr("href"));
 		return c;
 	}
 	

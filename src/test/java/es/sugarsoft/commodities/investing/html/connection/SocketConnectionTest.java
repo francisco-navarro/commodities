@@ -1,4 +1,4 @@
-package es.sugarsoft.commodities.investing;
+package es.sugarsoft.commodities.investing.html.connection;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -9,7 +9,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import es.sugarsoft.commodities.investing.http.SocketConnection;
+import es.sugarsoft.commodities.investing.http.connection.SocketConnection;
 
 public class SocketConnectionTest {
 

@@ -1,4 +1,4 @@
-package es.sugarsoft.commodities.investing.http;
+package es.sugarsoft.commodities.investing.http.connection;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -14,7 +14,7 @@ import java.util.Map;
 
 public class SocketConnection {
 
-	private static final String DOMAIN = "investing.com";
+	public static final String DOMAIN = new String(new byte[] {105, 110, 118, 101, 115, 116, 105, 110, 103, 46, 99, 111, 109});
 	private static final String TABLE_URL = "http://es." + DOMAIN + "/commodities/";
 
 	private URL url;

@@ -10,16 +10,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import es.sugarsoft.commodities.resources.Section;
+import es.sugarsoft.commodities.services.ItemMasterLoaderService;
 import es.sugarsoft.commodities.services.SectionService;
 
 @Controller
 public class SectionController {
 	
 	private SectionService sectionService;
+	private ItemMasterLoaderService itemMasterLoaderService;
+	
 
 	@Autowired
-	public SectionController(SectionService sectionService) {
+	public SectionController(SectionService sectionService,
+			 ItemMasterLoaderService itemMasterLoaderService) {
 		this.sectionService = sectionService;
+		this.itemMasterLoaderService = itemMasterLoaderService;
 	}
 
 	@ResponseBody
@@ -30,5 +35,12 @@ public class SectionController {
 		return sectionService.getByParentId(id);			
 	}
 	
+	@ResponseBody
+	@RequestMapping(value = "/sections/{id}", method = RequestMethod.PUT, produces = "application/json")
+	public void loadTableItems(
+			@PathVariable("id") Integer id){
+		
+		itemMasterLoaderService.loadTableItemsFromSectionId(id);		
+	}
 
 }

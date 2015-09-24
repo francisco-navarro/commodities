@@ -1,4 +1,4 @@
-package es.sugarsoft.commodities.investing.http;
+package es.sugarsoft.commodities.investing.http.connection;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -9,12 +9,14 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.List;
 import java.util.Map;
+import org.apache.log4j.Logger;
 
-public class HttpConnection {
+public class HtmlConnection {
 	
-	public static final String DOMAIN = "investing.com";
-	public static final String CHART_URL ="http://sbcharts." + DOMAIN + "/charts_xml/jschart_sideblock_###_area.json";
-	public static final String TABLE_URL ="http://es." + DOMAIN + "/";
+	private static final Logger logger = Logger.getLogger(HtmlConnection.class);
+	
+	public static final String DOMAIN = new String(new byte[] {105, 110, 118, 101, 115, 116, 105, 110, 103, 46, 99, 111, 109});
+	public static final String SECTION_URL ="http://es." + DOMAIN + "/";
 
 	private int LENGHT = 1024;
 
@@ -23,8 +25,9 @@ public class HttpConnection {
 	private URLConnection urlConn;
 	private Map<String, List<String>> headers;
 
-	public HttpConnection(String inputUrl) throws Exception{
+	public HtmlConnection(String inputUrl) throws Exception{
 		url = new URL(inputUrl);
+		logger.debug("New connection to "+url);
 		urlConn = url.openConnection();
 		urlConn.setRequestProperty("Accept","text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8");
 		urlConn.setRequestProperty("Accept-Encoding","UTF-8");
@@ -70,11 +73,7 @@ public class HttpConnection {
 	}
 	
 	public static String getTableUri(String table){
-		return TABLE_URL+table;
-	}
-	
-	public static String getSideChartUri(String id){
-		return CHART_URL.replace("###", id);
+		return SECTION_URL+table;
 	}
 
 }
