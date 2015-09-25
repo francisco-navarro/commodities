@@ -1,6 +1,7 @@
 package es.sugarsoft.commodities.investing.http.util;
 
 import java.lang.reflect.Method;
+import java.util.Date;
 import java.util.HashMap;
 
 import es.sugarsoft.commodities.resources.Item;
@@ -8,7 +9,7 @@ import es.sugarsoft.commodities.resources.Item;
 public enum ItemMethod {
 	
 	oneYearRange("Retorno 1 año", "setOneYearRange", String.class),
-	month( "Mes", "setMonth", String.class),
+	month( "Mes", "setMonth", Date.class),
 	contractSize("Tamaño contrato", "setContractSize", String.class),
 	settlementType("Clase de liquidación","setSettlementType", String.class),
 	lastTradingDay("Último día negociación","setLastTradingDay",String.class),

@@ -2,6 +2,7 @@ package es.sugarsoft.commodities.resources;
 
 import java.io.Serializable;
 import java.lang.reflect.Method;
+import java.util.Date;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
@@ -21,7 +22,7 @@ public class Item implements Serializable {
 	private Long fiftyTwoWeeksRange;
 	private Long compra;
 	private Long venta;
-	private String month;
+	private Date month;
 	private String contractSize;
 	private String settlementType;
 	private String lastTradingDay;
@@ -104,11 +105,11 @@ public class Item implements Serializable {
 		this.venta = venta;
 	}
 
-	public String getMonth() {
+	public Date getMonth() {
 		return month;
 	}
 
-	public void setMonth(String month) {
+	public void setMonth(Date month) {
 		this.month = month;
 	}
 

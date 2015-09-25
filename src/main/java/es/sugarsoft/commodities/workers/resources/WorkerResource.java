@@ -3,7 +3,7 @@ package es.sugarsoft.commodities.workers.resources;
 import org.quartz.JobDataMap;
 import org.quartz.JobDetail;
 
-import es.sugarsoft.commodities.workers.ItemMasterLoaderWorker;
+import es.sugarsoft.commodities.workers.ItemMasterUpdaterWorker;
 import es.sugarsoft.commodities.workers.config.WorkersConfig;
 
 public class WorkerResource {

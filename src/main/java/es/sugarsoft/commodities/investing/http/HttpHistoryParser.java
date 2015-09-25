@@ -17,15 +17,15 @@ import es.sugarsoft.commodities.investing.http.connection.HtmlConnection;
 import es.sugarsoft.commodities.investing.http.util.ItemMethod;
 import es.sugarsoft.commodities.resources.Item;
 
-public class HttpDetailParser {
+public class HttpHistoryParser {
 
 	private static final Logger logger = Logger.getLogger(HtmlConnection.class);
 	private static final SimpleDateFormat monthParser = new SimpleDateFormat("MMM dd",Locale.ENGLISH);
 
 	private HtmlConnection connection;
 
-	public HttpDetailParser(String url) throws Exception{
-		connection = new HtmlConnection(HtmlConnection.SECTION_URL + url );
+	public HttpHistoryParser(String url) throws Exception{
+		connection = new HtmlConnection(HtmlConnection.SECTION_URL + url +"-historical-data" );
 	}
 
 	public Item getItemDetails(Item item) {

@@ -44,8 +44,8 @@ public class HttpTableParser {
 			if(tables.get(i).hasAttr("tablesorter")){
 				Elements elems = tables.get(i).select("tbody > tr");
 				for(int j=0;j<elems.size();j++){
-					Item c = CommodityDeserializer.deserialize(elems.get(j));
-					c.setJson(getAdditionalData(c));
+					Item c = CommodityDeserializer.deserialize(elems.get(j));					
+					//c.setJson(getAdditionalData(c));
 					c = getDetailData(c);
 					list.add(c);
 				}

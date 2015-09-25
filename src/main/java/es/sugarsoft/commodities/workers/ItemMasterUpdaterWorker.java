@@ -7,7 +7,7 @@ import org.quartz.JobExecutionException;
 
 import es.sugarsoft.commodities.workers.config.WorkersConfig;
 
-public class ItemMasterLoaderWorker implements Job{
+public class ItemMasterUpdaterWorker implements Job{
 
 
 
@@ -15,7 +15,7 @@ public class ItemMasterLoaderWorker implements Job{
 	public void execute(JobExecutionContext context) throws JobExecutionException {
 		JobDataMap dataMap = context.getJobDetail().getJobDataMap(); 
 		String params = (String) dataMap.get(WorkersConfig.PARAMS_STRING);
-		WorkersConfig.getItemMasterLoader().loadTableItemsFromSectionId(Long.valueOf(params));
+		throw new UnsupportedOperationException("Pendiente de poner aquí el servicio de actualizar"); 
 	}
 
 }

@@ -1,16 +1,15 @@
 package es.sugarsoft.commodities.investing.services;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-import static org.mockito.Mockito.atLeastOnce;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyLong;
-
+import static org.mockito.Mockito.atLeastOnce;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
-import org.mockito.verification.VerificationMode;
 
 import es.sugarsoft.commodities.resources.Item;
 import es.sugarsoft.commodities.resources.Section;
@@ -33,6 +32,7 @@ public class ItemMasterLoaderServiceTest {
 		itemMasterLoaderService = new ItemMasterLoaderServiceImpl(itemMasterDao, sectionService, itemUpdaterService);
 	}
 	
+	@Ignore
 	@Test
 	public void shouldRetrieveListOfItems(){
 		final long id = 3l;

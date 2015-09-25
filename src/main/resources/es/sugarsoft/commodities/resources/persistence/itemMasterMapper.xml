@@ -9,9 +9,9 @@
 	</select>
 
 	<insert id="add" parameterType="map">
-		insert into ITEM_MASTER (ID,DESCRIPTION, JSON, SECTION_ID)
+		insert into ITEM_MASTER (ID,DESCRIPTION, JSON, SECTION_ID, URL, ONE_YEAR_RANGE, MONTH, CONTRACT_SIZE, SETTLEMENT_TYPE, LAST_TRADING_DAY, POINT_VALUE, TICK_SIZE, TICK_VALUE, BASE_SYMBOL, MONTHS)
 		values 
-		(#{commodity.id},#{commodity.description},#{commodity.json.bytes},#{sectionId})
+		(#{commodity.id},#{commodity.description},#{commodity.json.bytes},#{sectionId},#{commodity.url},#{commodity.oneYearRange},#{commodity.month},#{commodity.contractSize},#{commodity.settlementType},#{commodity.lastTradingDay},#{commodity.pointValue},#{commodity.tickSize},#{commodity.tickValue},#{commodity.baseSymbol},#{commodity.months})
 	</insert>
 	
 </mapper>

@@ -35,7 +35,7 @@ public class ItemMasterMapperIntegrationTest {
 	public void testAdd() {
 		Item commodity = new Item();
 		commodity.setDescription("aa");
-		commodity.setId(2);
+		commodity.setId(2l);
 		commodity.setJson("json values");
 		itemMasterMapper.add(commodity, 1l);
 	}
