@@ -1,6 +1,7 @@
 package es.sugarsoft.commodities.resources;
 
 import java.io.Serializable;
+import java.lang.reflect.Method;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
@@ -14,12 +15,12 @@ public class Item implements Serializable {
 	private Value[] data;
 	private String json;
 	private String url;
-	private long prevClose;
-	private long open;
-	private long oneYearRange;
-	private long fiftyTwoWeeksRange;
-	private long compra;
-	private long venta;
+	private Long prevClose;
+	private Long open;
+	private String oneYearRange;
+	private Long fiftyTwoWeeksRange;
+	private Long compra;
+	private Long venta;
 	private String month;
 	private String contractSize;
 	private String settlementType;
@@ -30,11 +31,11 @@ public class Item implements Serializable {
 	private String baseSymbol;
 	private String months;
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -55,51 +56,51 @@ public class Item implements Serializable {
 		this.url = url;
 	}
 	
-	public long getPrevClose() {
+	public Long getPrevClose() {
 		return prevClose;
 	}
 
-	public void setPrevClose(long prevClose) {
+	public void setPrevClose(Long prevClose) {
 		this.prevClose = prevClose;
 	}
 
-	public long getOpen() {
+	public Long getOpen() {
 		return open;
 	}
 
-	public void setOpen(long open) {
+	public void setOpen(Long open) {
 		this.open = open;
 	}
 
-	public long getOneYearRange() {
+	public String getOneYearRange() {
 		return oneYearRange;
 	}
 
-	public void setOneYearRange(long oneYearRange) {
+	public void setOneYearRange(String oneYearRange) {
 		this.oneYearRange = oneYearRange;
 	}
 
-	public long getFiftyTwoWeeksRange() {
+	public Long getFiftyTwoWeeksRange() {
 		return fiftyTwoWeeksRange;
 	}
 
-	public void setFiftyTwoWeeksRange(long fiftyTwoWeeksRange) {
+	public void setFiftyTwoWeeksRange(Long fiftyTwoWeeksRange) {
 		this.fiftyTwoWeeksRange = fiftyTwoWeeksRange;
 	}
 
-	public long getCompra() {
+	public Long getCompra() {
 		return compra;
 	}
 
-	public void setCompra(long compra) {
+	public void setCompra(Long compra) {
 		this.compra = compra;
 	}
 
-	public long getVenta() {
+	public Long getVenta() {
 		return venta;
 	}
 
-	public void setVenta(long venta) {
+	public void setVenta(Long venta) {
 		this.venta = venta;
 	}
 
@@ -199,6 +200,18 @@ public class Item implements Serializable {
 	public void setData(Value[] data) {
 		this.data = data;
 	}
-
+	
+	@SuppressWarnings("rawtypes")
+	public static Method getMethod(String name,  Class paramType){
+		Class[] args = new Class[]{paramType};
+		try {
+			return Item.class.getMethod(name,args);
+		} catch (NoSuchMethodException e) {
+			e.printStackTrace();
+		} catch (SecurityException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 }

@@ -48,6 +48,11 @@ public class HtmlConnection {
 		return urlConn.getInputStream();
 	}
 
+	/**
+	 * Si la conexión es correcta, lee el html de la página desde el InputStream
+	 * @return HTML de la página en UTF-8
+	 * @throws IOException
+	 */
 	public String getOutput() throws IOException{	
 		if(status.matches("HTTP/1.[0-9] 2[0-9][0-9].*")){
 			final char[] buffer = new char[LENGHT];
