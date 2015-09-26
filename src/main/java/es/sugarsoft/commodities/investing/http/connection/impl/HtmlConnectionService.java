@@ -1,4 +1,4 @@
-package es.sugarsoft.commodities.investing.http.connection;
+package es.sugarsoft.commodities.investing.http.connection.impl;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -9,11 +9,14 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.List;
 import java.util.Map;
-import org.apache.log4j.Logger;
 
-public class HtmlConnection {
+import org.apache.log4j.Logger;
+import org.springframework.stereotype.Service;
+
+//@Service("htmlConnectionService")
+public class HtmlConnectionService {
 	
-	private static final Logger logger = Logger.getLogger(HtmlConnection.class);
+	private static final Logger logger = Logger.getLogger(HtmlConnectionService.class);
 	
 	public static final String DOMAIN = new String(new byte[] {105, 110, 118, 101, 115, 116, 105, 110, 103, 46, 99, 111, 109});
 	public static final String SECTION_URL ="http://es." + DOMAIN + "/";
@@ -25,7 +28,7 @@ public class HtmlConnection {
 	private URLConnection urlConn;
 	private Map<String, List<String>> headers;
 
-	public HtmlConnection(String inputUrl) throws Exception{
+	public HtmlConnectionService(String inputUrl) throws Exception{
 		url = new URL(inputUrl);
 		logger.debug("New connection to "+url);
 		urlConn = url.openConnection();

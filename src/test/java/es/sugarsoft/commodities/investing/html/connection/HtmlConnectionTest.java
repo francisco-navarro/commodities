@@ -9,15 +9,15 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import es.sugarsoft.commodities.investing.http.connection.HtmlConnection;
+import es.sugarsoft.commodities.investing.http.connection.impl.HtmlConnectionService;
 
 public class HtmlConnectionTest {
 
-	private HtmlConnection engine;
+	private HtmlConnectionService engine;
 	
 	@Before
 	public void init() throws Exception{
-		engine = new HtmlConnection(HtmlConnection.SECTION_URL);
+		engine = new HtmlConnectionService(HtmlConnectionService.SECTION_URL);
 	}
 	
 	@Test

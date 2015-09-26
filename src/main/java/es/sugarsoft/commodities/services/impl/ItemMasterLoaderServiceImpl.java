@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import es.sugarsoft.commodities.investing.http.HttpTableParser;
-import es.sugarsoft.commodities.investing.http.connection.HtmlConnection;
+import es.sugarsoft.commodities.investing.http.connection.impl.HtmlConnectionService;
 import es.sugarsoft.commodities.resources.Item;
 import es.sugarsoft.commodities.resources.Section;
 import es.sugarsoft.commodities.resources.persistence.ItemMasterMapper;
@@ -44,13 +44,13 @@ public class ItemMasterLoaderServiceImpl implements ItemMasterLoaderService {
 	@Deprecated
 	public void loadTableItems(String market, String table) {
 
-		HtmlConnection connection = null;
+		HtmlConnectionService connection = null;
 		
 
 		try {
-			String url = HtmlConnection.getTableUri(market + "/" + URLEncoder.encode(table, "UTF-8"));
+			String url = HtmlConnectionService.getTableUri(market + "/" + URLEncoder.encode(table, "UTF-8"));
 
-			connection = new HtmlConnection(url);			
+			connection = new HtmlConnectionService(url);			
 			List<Item> list = httpTableParser.getItems(connection.getOutput());
 
 			for (Item commodity : list) {
@@ -67,12 +67,12 @@ public class ItemMasterLoaderServiceImpl implements ItemMasterLoaderService {
 	@Override
 	public void  loadTableItemsFromSectionId(long id){
 
-		HtmlConnection connection = null;
+		HtmlConnectionService connection = null;
 		
 		try {
 			String url = getUriFromSectionId(id);
 
-			connection = new HtmlConnection(url);
+			connection = new HtmlConnectionService(url);
 			List<Item> list = httpTableParser.getItems(connection.getOutput());
 
 			for (Item commodity : list) {

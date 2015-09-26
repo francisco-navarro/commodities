@@ -30,7 +30,8 @@ import es.sugarsoft.commodities.resources.persistence.MyMapper;
 @ComponentScan({
 	"es.sugarsoft.commodities.controller",
 	"es.sugarsoft.commodities.workers.config",
-	"es.sugarsoft.commodities.services.impl"
+	"es.sugarsoft.commodities.services.impl",
+	"es.sugarsoft.commodities.investing.http.connection.impl"
 }) 
 @MapperScan(basePackageClasses = { MyMapper.class } )
 @EnableWebMvc

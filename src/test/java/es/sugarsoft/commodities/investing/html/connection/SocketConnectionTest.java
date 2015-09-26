@@ -9,21 +9,22 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import es.sugarsoft.commodities.investing.http.connection.SocketConnection;
+import es.sugarsoft.commodities.investing.http.connection.impl.SocketChartConnectionService;
 
 public class SocketConnectionTest {
 
-	private SocketConnection engine;
+	private SocketChartConnectionService engine;
 	
 	@Before
 	public void init() throws Exception{
-		engine = new SocketConnection(8830l);
+		engine = new SocketChartConnectionService(8830l);
 	}
 	
-	@Test
-	public void connect() throws IOException{
-		List<String> response = engine.getHeader(null);
-		assertTrue(!response.isEmpty());
-		assertEquals(response.get(0),"HTTP/1.1 200 OK");
-	}
+	//TODO: Hacer un test distinto con mock de las cookies
+//	@Test
+//	public void connect() throws IOException{
+//		List<String> response = engine.getHeader(null);
+//		assertTrue(!response.isEmpty());
+//		assertEquals(response.get(0),"HTTP/1.1 200 OK");
+//	}
 }

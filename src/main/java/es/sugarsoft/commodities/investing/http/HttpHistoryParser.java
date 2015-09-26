@@ -13,19 +13,19 @@ import org.jsoup.nodes.Node;
 import org.jsoup.nodes.TextNode;
 import org.jsoup.select.Elements;
 
-import es.sugarsoft.commodities.investing.http.connection.HtmlConnection;
+import es.sugarsoft.commodities.investing.http.connection.impl.HtmlConnectionService;
 import es.sugarsoft.commodities.investing.http.util.ItemMethod;
 import es.sugarsoft.commodities.resources.Item;
 
 public class HttpHistoryParser {
 
-	private static final Logger logger = Logger.getLogger(HtmlConnection.class);
+	private static final Logger logger = Logger.getLogger(HtmlConnectionService.class);
 	private static final SimpleDateFormat monthParser = new SimpleDateFormat("MMM dd",Locale.ENGLISH);
 
-	private HtmlConnection connection;
+	private HtmlConnectionService connection;
 
 	public HttpHistoryParser(String url) throws Exception{
-		connection = new HtmlConnection(HtmlConnection.SECTION_URL + url +"-historical-data" );
+		connection = new HtmlConnectionService(HtmlConnectionService.SECTION_URL + url +"-historical-data" );
 	}
 
 	public Item getItemDetails(Item item) {

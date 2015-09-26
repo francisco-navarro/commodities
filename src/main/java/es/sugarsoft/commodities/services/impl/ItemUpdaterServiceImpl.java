@@ -9,7 +9,7 @@ import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import es.sugarsoft.commodities.investing.http.connection.SocketConnection;
+import es.sugarsoft.commodities.investing.http.connection.impl.SocketChartConnectionService;
 import es.sugarsoft.commodities.resources.Item;
 import es.sugarsoft.commodities.resources.persistence.ItemMapper;
 import es.sugarsoft.commodities.services.ItemUpdaterService;
@@ -31,7 +31,7 @@ public class ItemUpdaterServiceImpl implements ItemUpdaterService {
 	public void updateItem(long id) {
 		try {
 
-			SocketConnection sConn = new SocketConnection(id);
+			SocketChartConnectionService sConn = new SocketChartConnectionService(id);
 			JSONObject json = (JSONObject) parser.parse(sConn.getJson());
 
 			
