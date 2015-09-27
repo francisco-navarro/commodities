@@ -19,6 +19,7 @@ public class CookiesService implements ICookiesService{
 	private static String PHPSESSID;
 	private static String fpros_popup;
 
+	@Override
 	public void setCookies(Map<String, List<String>> headers) {
 
 		for (String headerKey : headers.keySet()) {

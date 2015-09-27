@@ -11,7 +11,10 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import es.sugarsoft.commodities.investing.http.connection.ICookiesService;
 
 //@Service("htmlConnectionService")
 public class HtmlConnectionService {
@@ -27,6 +30,11 @@ public class HtmlConnectionService {
 	private URL url;
 	private URLConnection urlConn;
 	private Map<String, List<String>> headers;
+	
+	private ICookiesService cookiesService;
+	
+	
+	
 
 	public HtmlConnectionService(String inputUrl) throws Exception{
 		url = new URL(inputUrl);
@@ -40,6 +48,7 @@ public class HtmlConnectionService {
 		urlConn.connect();
 
 		headers = urlConn.getHeaderFields();
+		cookiesService.setCookies(headers);
 		status = headers.get(null).get(0);
 	}
 
