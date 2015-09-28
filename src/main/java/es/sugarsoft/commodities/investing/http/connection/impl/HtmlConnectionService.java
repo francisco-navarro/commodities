@@ -15,9 +15,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import es.sugarsoft.commodities.investing.http.connection.ICookiesService;
+import es.sugarsoft.commodities.investing.http.connection.IHtmlConnectionService;
 
-//@Service("htmlConnectionService")
-public class HtmlConnectionService {
+@Service("htmlConnectionService")
+public class HtmlConnectionService implements IHtmlConnectionService {
 	
 	private static final Logger logger = Logger.getLogger(HtmlConnectionService.class);
 	
@@ -33,10 +34,13 @@ public class HtmlConnectionService {
 	
 	private ICookiesService cookiesService;
 	
+	@Autowired
+	public HtmlConnectionService(ICookiesService cookiesService){
+		this.cookiesService= cookiesService;
+	}
 	
-	
-
-	public HtmlConnectionService(String inputUrl) throws Exception{
+	@Override
+	public String connect(String inputUrl) throws Exception{
 		url = new URL(inputUrl);
 		logger.debug("New connection to "+url);
 		urlConn = url.openConnection();
@@ -50,22 +54,17 @@ public class HtmlConnectionService {
 		headers = urlConn.getHeaderFields();
 		cookiesService.setCookies(headers);
 		status = headers.get(null).get(0);
+		
+		return getHtmlOutput();
 	}
 
-	public List<String> getHeader(String key){
-		return headers.get(key);
-	}
-	
-	public InputStream getInputStream() throws IOException{
-		return urlConn.getInputStream();
-	}
 
 	/**
 	 * Si la conexión es correcta, lee el html de la página desde el InputStream
 	 * @return HTML de la página en UTF-8
 	 * @throws IOException
 	 */
-	public String getOutput() throws IOException{	
+	public String getHtmlOutput() throws IOException{	
 		if(status.matches("HTTP/1.[0-9] 2[0-9][0-9].*")){
 			final char[] buffer = new char[LENGHT];
 			final StringBuilder out = new StringBuilder();
@@ -89,7 +88,8 @@ public class HtmlConnectionService {
 		return "{\"attr\":{}}";
 	}
 	
-	public static String getTableUri(String table){
+	@Override
+	public String getTableUri(String table){
 		return SECTION_URL+table;
 	}
 

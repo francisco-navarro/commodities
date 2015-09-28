@@ -15,7 +15,7 @@ public class ChartEngine {
 	}
 	
 	public String getJson() throws IOException{
-		return connection.getOutput();
+		return connection.getHtmlOutput();
 	}
 	
 }

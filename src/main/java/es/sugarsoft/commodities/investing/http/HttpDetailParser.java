@@ -31,7 +31,7 @@ public class HttpDetailParser {
 	public Item getItemDetails(Item item) {
 		Document doc = null;		
 		try {
-			doc = Jsoup.parse(connection.getOutput());
+			doc = Jsoup.parse(connection.getHtmlOutput());
 			Elements detailTable = doc.select(".overviewDataTable");
 			Elements fields = detailTable.select("div").select(".inlineblock");
 			for(int j=0;j<fields.size();j++){

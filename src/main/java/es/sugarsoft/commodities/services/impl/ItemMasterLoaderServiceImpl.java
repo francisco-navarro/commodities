@@ -51,7 +51,7 @@ public class ItemMasterLoaderServiceImpl implements ItemMasterLoaderService {
 			String url = HtmlConnectionService.getTableUri(market + "/" + URLEncoder.encode(table, "UTF-8"));
 
 			connection = new HtmlConnectionService(url);			
-			List<Item> list = httpTableParser.getItems(connection.getOutput());
+			List<Item> list = httpTableParser.getItems(connection.getHtmlOutput());
 
 			for (Item commodity : list) {
 				itemMasterDao.add(commodity, 2l);
@@ -73,7 +73,7 @@ public class ItemMasterLoaderServiceImpl implements ItemMasterLoaderService {
 			String url = getUriFromSectionId(id);
 
 			connection = new HtmlConnectionService(url);
-			List<Item> list = httpTableParser.getItems(connection.getOutput());
+			List<Item> list = httpTableParser.getItems(connection.getHtmlOutput());
 
 			for (Item commodity : list) {
 				itemMasterDao.add(commodity,id);
