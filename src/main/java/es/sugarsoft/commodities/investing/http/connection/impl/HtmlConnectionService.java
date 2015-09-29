@@ -21,9 +21,7 @@ import es.sugarsoft.commodities.investing.http.connection.IHtmlConnectionService
 public class HtmlConnectionService implements IHtmlConnectionService {
 	
 	private static final Logger logger = Logger.getLogger(HtmlConnectionService.class);
-	
-	public static final String DOMAIN = new String(new byte[] {105, 110, 118, 101, 115, 116, 105, 110, 103, 46, 99, 111, 109});
-	public static final String SECTION_URL ="http://es." + DOMAIN + "/";
+
 
 	private int LENGHT = 1024;
 
@@ -87,10 +85,6 @@ public class HtmlConnectionService implements IHtmlConnectionService {
 		}
 		return "{\"attr\":{}}";
 	}
-	
-	@Override
-	public String getTableUri(String table){
-		return SECTION_URL+table;
-	}
+
 
 }

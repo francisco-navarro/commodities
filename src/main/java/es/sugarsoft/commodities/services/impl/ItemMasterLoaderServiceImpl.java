@@ -3,14 +3,12 @@ package es.sugarsoft.commodities.services.impl;
 import java.net.URLEncoder;
 import java.util.List;
 
-import org.json.simple.parser.JSONParser;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import es.sugarsoft.commodities.investing.http.HttpTableParser;
-import es.sugarsoft.commodities.investing.http.connection.impl.HtmlConnectionService;
+import es.sugarsoft.commodities.investing.http.connection.IHtmlConnectionService;
+import es.sugarsoft.commodities.investing.http.parser.IHttpTableParser;
+import es.sugarsoft.commodities.investing.http.util.UriConstants;
 import es.sugarsoft.commodities.resources.Item;
 import es.sugarsoft.commodities.resources.Section;
 import es.sugarsoft.commodities.resources.persistence.ItemMasterMapper;
@@ -22,36 +20,33 @@ import es.sugarsoft.commodities.services.SectionService;
 @Service("itemMasterLoaderService")
 public class ItemMasterLoaderServiceImpl implements ItemMasterLoaderService {
 
-	private static final String MAIN_TABLE = "#dailyTab > tbody > tr";
-	private static final String SECOND_TABLE = "#cross_rate_1 > tbody > tr";
+//	private static final String MAIN_TABLE = "#dailyTab > tbody > tr";
+//	private static final String SECOND_TABLE = "#cross_rate_1 > tbody > tr";
 	
 	private SectionService sectionService;
 	private ItemMasterMapper itemMasterDao;
 	private ItemUpdaterService itemUpdaterService;
-	private HttpTableParser httpTableParser = new HttpTableParser();
+	private IHttpTableParser httpTableParser;
 
 	@Autowired
 	public ItemMasterLoaderServiceImpl(ItemMasterMapper itemMasterDao,
 			SectionService sectionService,
-			ItemUpdaterService itemUpdaterService) {
+			ItemUpdaterService itemUpdaterService,
+			IHttpTableParser httpTableParser) {
 
 		this.itemMasterDao = itemMasterDao;
 		this.sectionService = sectionService;
 		this.itemUpdaterService = itemUpdaterService;
+		this.httpTableParser = httpTableParser;
 	}
 
 	@Override
 	@Deprecated
 	public void loadTableItems(String market, String table) {
 
-		HtmlConnectionService connection = null;
-		
-
 		try {
-			String url = HtmlConnectionService.getTableUri(market + "/" + URLEncoder.encode(table, "UTF-8"));
-
-			connection = new HtmlConnectionService(url);			
-			List<Item> list = httpTableParser.getItems(connection.getHtmlOutput());
+			String url = UriConstants.getTableUri(market + "/" + URLEncoder.encode(table, "UTF-8"));						
+			List<Item> list = httpTableParser.getItemsFromTableUrl(url);
 
 			for (Item commodity : list) {
 				itemMasterDao.add(commodity, 2l);
@@ -67,13 +62,9 @@ public class ItemMasterLoaderServiceImpl implements ItemMasterLoaderService {
 	@Override
 	public void  loadTableItemsFromSectionId(long id){
 
-		HtmlConnectionService connection = null;
-		
 		try {
 			String url = getUriFromSectionId(id);
-
-			connection = new HtmlConnectionService(url);
-			List<Item> list = httpTableParser.getItems(connection.getHtmlOutput());
+			List<Item> list = httpTableParser.getItemsFromTableUrl(url);
 
 			for (Item commodity : list) {
 				itemMasterDao.add(commodity,id);

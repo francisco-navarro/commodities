@@ -2,8 +2,8 @@ package es.sugarsoft.commodities.investing.html;
 
 import org.junit.Test;
 
-import es.sugarsoft.commodities.investing.http.HttpDetailParser;
-import es.sugarsoft.commodities.investing.http.HttpTableParser;
+import es.sugarsoft.commodities.investing.http.parser.impl.HttpDetailParser;
+import es.sugarsoft.commodities.investing.http.parser.impl.HttpTableParser;
 import es.sugarsoft.commodities.resources.Item;
 
 public class HttpHistoryParserTest {

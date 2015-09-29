@@ -1,15 +1,12 @@
 package es.sugarsoft.commodities.investing.html.connection;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
 import java.io.IOException;
-import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import es.sugarsoft.commodities.investing.http.connection.impl.HtmlConnectionService;
+import es.sugarsoft.commodities.investing.http.util.UriConstants;
 
 public class HtmlConnectionTest {
 
@@ -17,7 +14,7 @@ public class HtmlConnectionTest {
 	
 	@Before
 	public void init() throws Exception{
-		engine = new HtmlConnectionService(HtmlConnectionService.SECTION_URL);
+		engine = new HtmlConnectionService(UriConstants.SECTION_URL);
 	}
 	
 	@Test

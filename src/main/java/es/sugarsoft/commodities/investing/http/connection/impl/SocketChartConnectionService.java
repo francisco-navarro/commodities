@@ -3,42 +3,37 @@ package es.sugarsoft.commodities.investing.http.connection.impl;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
 import java.net.URL;
-import java.net.URLConnection;
-import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import es.sugarsoft.commodities.investing.http.connection.ICookiesService;
+import es.sugarsoft.commodities.investing.http.connection.ISocketChartConnectionService;
 
-//@Service("socketChartConnectionService")
-public class SocketChartConnectionService {
+@Service("socketChartConnectionService")
+public class SocketChartConnectionService  implements ISocketChartConnectionService{
 
 	public static final String DOMAIN = new String(new byte[] {105, 110, 118, 101, 115, 116, 105, 110, 103, 46, 99, 111, 109});
-
-	private String json;
 
 	private static final String COOKIE_CONSTANTS = "activeConsent-4=1.1; __PHPSESSID__; _gat=1; _gat_allSitesTracker=1; geoC=ES; SideBlockUser=a%3A2%3A%7Bs%3A10%3A%22stack_size%22%3Ba%3A1%3A%7Bs%3A11%3A%22last_quotes%22%3Bi%3A8%3B%7Ds%3A6%3A%22stacks%22%3Ba%3A1%3A%7Bs%3A11%3A%22last_quotes%22%3Ba%3A1%3A%7Bi%3A0%3Ba%3A3%3A%7Bs%3A7%3A%22pair_ID%22%3Bs%3A4%3A%228830%22%3Bs%3A10%3A%22pair_title%22%3Bs%3A0%3A%22%22%3Bs%3A9%3A%22pair_link%22%3Bs%3A17%3A%22%2Fcommodities%2Fgold%22%3B%7D%7D%7D%7D; __fpros_popup__; gtmFired=OK; _ga=GA1.2.1197578690.1439400630";
 	private static final String URI = "/common/modules/js_instrument_chart/api/data.php";
 	
-	@Autowired
 	private ICookiesService cookiesService;
 
-	public SocketChartConnectionService(long id) throws Exception {
-		// Make a petition to get json data
-		getData(id);
+	@Autowired
+	public SocketChartConnectionService(ICookiesService cookiesService) throws Exception {
+		this.cookiesService = cookiesService;
 	}
 
-
-	private void getData(long id) throws IOException {
+	@Override
+	public String getJsonData(long id) throws IOException {
 
 		Socket socket = null;
+		String json ="";
 
 		try {
 			URL url = new URL(DOMAIN);
@@ -68,6 +63,8 @@ public class SocketChartConnectionService {
 				socket.close();
 			}
 		}
+		
+		return json;
 
 	}
 
@@ -97,7 +94,4 @@ public class SocketChartConnectionService {
 		return uri;
 	}
 
-	public String getJson(){
-		return json;
-	}
 }

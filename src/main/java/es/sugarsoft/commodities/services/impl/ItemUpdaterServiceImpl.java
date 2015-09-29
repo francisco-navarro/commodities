@@ -19,21 +19,23 @@ import es.sugarsoft.commodities.services.ItemUpdaterService;
 public class ItemUpdaterServiceImpl implements ItemUpdaterService {
 
 	private ItemMapper itemDao;
+	private SocketChartConnectionService socketChartConnectionService;
 	private JSONParser parser;
 
 	@Autowired
-	public ItemUpdaterServiceImpl(ItemMapper itemDao) {
+	public ItemUpdaterServiceImpl(ItemMapper itemDao,
+			SocketChartConnectionService socketChartConnectionService) {
 		parser = new JSONParser();
 		this.itemDao = itemDao;
+		this.socketChartConnectionService = socketChartConnectionService;
 	}
 
 	@Override
 	public void updateItem(long id) {
 		try {
 
-			SocketChartConnectionService sConn = new SocketChartConnectionService(id);
-			JSONObject json = (JSONObject) parser.parse(sConn.getJson());
-
+			String plainJson = socketChartConnectionService.getJsonData(id);
+			JSONObject json = (JSONObject) parser.parse(plainJson);
 			
 			Map attributes = (Map) json.get("attr");
 

@@ -12,9 +12,6 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.PathResource;
-import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -24,14 +21,20 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
+import es.sugarsoft.commodities.controller.SectionController;
+import es.sugarsoft.commodities.investing.http.connection.impl.HtmlConnectionService;
+import es.sugarsoft.commodities.investing.http.parser.impl.HttpTableParser;
 import es.sugarsoft.commodities.resources.persistence.MyMapper;
+import es.sugarsoft.commodities.services.impl.SectionServiceImpl;
+import es.sugarsoft.commodities.workers.config.WorkersConfig;
 
 @Configuration
-@ComponentScan({
-	"es.sugarsoft.commodities.controller",
-	"es.sugarsoft.commodities.workers.config",
-	"es.sugarsoft.commodities.services.impl",
-	"es.sugarsoft.commodities.investing.http.connection.impl"
+@ComponentScan(basePackageClasses = {
+		SectionController.class, 
+		WorkersConfig.class,
+		SectionServiceImpl.class,
+		HtmlConnectionService.class,
+		HttpTableParser.class
 }) 
 @MapperScan(basePackageClasses = { MyMapper.class } )
 @EnableWebMvc

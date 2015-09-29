@@ -1,4 +1,4 @@
-package es.sugarsoft.commodities.investing.http;
+package es.sugarsoft.commodities.investing.http.parser.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,22 +10,40 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import es.sugarsoft.commodities.investing.http.connection.IHtmlConnectionService;
+import es.sugarsoft.commodities.investing.http.parser.IChartEngine;
+import es.sugarsoft.commodities.investing.http.parser.IHttpDetailParser;
+import es.sugarsoft.commodities.investing.http.parser.IHttpTableParser;
 import es.sugarsoft.commodities.resources.Item;
 import es.sugarsoft.commodities.resources.json.deserializer.CommodityDeserializer;
 
-public class HttpTableParser {
+@Service("httpTableParser")
+public class HttpTableParser implements IHttpTableParser {
 	
 	private JSONParser jsonParser;
+	private IHttpDetailParser httpDetailParser;
+	private IHtmlConnectionService htmlConnectionService;
+	private IChartEngine chartEngine;
 	
-	public HttpTableParser(){
+	@Autowired
+	public HttpTableParser(IHttpDetailParser httpDetailParser,
+			IHtmlConnectionService htmlConnectionService,
+			IChartEngine chartEngine){
 		jsonParser=new JSONParser();
+		this.httpDetailParser = httpDetailParser;
+		this.htmlConnectionService = htmlConnectionService;
+		this.chartEngine = chartEngine;
 	}
 	
-	public List<Item> getItems(String html){
+	@Override
+	public List<Item> getItemsFromTableUrl(String url){
 		
 		Document doc = null;		
 		try {
+			String html = htmlConnectionService.connect(url);
 			doc = Jsoup.parse(html);
 			return getListFromDoc(doc);
 		} catch (Exception e) {			
@@ -38,7 +56,6 @@ public class HttpTableParser {
 
 		List<Item> list = new ArrayList<Item>();
 		Elements tables = doc.select("table");
-		
 		
 		for (int i = 0; i < tables.size(); i++) {
 			if(tables.get(i).hasAttr("tablesorter")){
@@ -55,21 +72,15 @@ public class HttpTableParser {
 		return list;
 	}
 
-	private Item getDetailData(Item c) {
-		try{
-			HttpDetailParser detailParser = new HttpDetailParser(c.getUrl());
-			return detailParser.getItemDetails(c);
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-		return c;
+	private Item getDetailData(Item c) {		
+		return httpDetailParser.getItemDetails(c);
 	}
-
-	private String getAdditionalData(Item c) {
-		try {
-			
-			ChartEngine chart = new ChartEngine(c.getId());			
-			JSONObject json = (JSONObject) jsonParser.parse(chart.getJson());			
+	
+	@Override
+	public String getAdditionalData(Item c) {
+		try {			
+			JSONObject json = (JSONObject) jsonParser.parse(
+					chartEngine.getJson(c.getId()));			
 			
 			Map attributes =(Map) json.get("attr");
 

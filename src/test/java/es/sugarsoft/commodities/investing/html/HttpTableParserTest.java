@@ -14,9 +14,10 @@ import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import es.sugarsoft.commodities.investing.http.HttpTableParser;
 import es.sugarsoft.commodities.investing.http.connection.IHtmlConnectionService;
 import es.sugarsoft.commodities.investing.http.connection.impl.HtmlConnectionService;
+import es.sugarsoft.commodities.investing.http.parser.impl.HttpTableParser;
+import es.sugarsoft.commodities.investing.http.util.UriConstants;
 import es.sugarsoft.commodities.resources.Item;
 import es.sugarsoft.commodities.servlet.config.MyBatisConfig;
 import es.sugarsoft.test.support.appconfig.DataSourceConfig;
@@ -36,13 +37,14 @@ public class HttpTableParserTest {
 	@Autowired
 	private IHtmlConnectionService htmlConnectionService; 
 	
+	@Autowired
 	private HttpTableParser parser = new HttpTableParser();
 	
 	@Test
 	public void givenUrlWhenLoadItemsThenGetTheUrl() throws Exception{
 		
-		String connectionResult = htmlConnectionService.connect(HtmlConnectionService.SECTION_URL + "commodities/" );
-		List<Item> list = parser.getItems(connectionResult);
+		String connectionResult = htmlConnectionService.connect(UriConstants.SECTION_URL + "commodities/" );
+		List<Item> list = parser.getItemsFromTableUrl(connectionResult);
 		
 		assertTrue(!list.isEmpty());
 		for(Item item : list){
