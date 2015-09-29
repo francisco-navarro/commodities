@@ -1,22 +1,24 @@
-package es.sugarsoft.commodities.investing.html;
+package es.sugarsoft.commodities.investing.http.parser;
+
+import static org.junit.Assert.*;
 
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import es.sugarsoft.commodities.investing.http.parser.impl.HttpDetailParser;
-import es.sugarsoft.commodities.investing.http.parser.impl.HttpTableParser;
 import es.sugarsoft.commodities.resources.Item;
 
-public class HttpHistoryParserTest {
+public class HttpDetailParserTest extends BaseHttparserConfig{
 	
-
+	@Autowired
 	private HttpDetailParser parser;
 	
 	@Test
 	public void shouldRetrieveItemInformation() throws Exception{
 		Item item = new Item();
 		item.setUrl("/commodities/gold");
-		parser = new HttpDetailParser(item.getUrl());
-		item= parser.getItemDetails(item);
+		item = parser.getItemDetails(item);
+		assertNotNull(item.getContractSize());
 	}
 	
 

@@ -11,6 +11,7 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import es.sugarsoft.commodities.investing.http.parser.IHttpTableParser;
 import es.sugarsoft.commodities.resources.Item;
 import es.sugarsoft.commodities.resources.Section;
 import es.sugarsoft.commodities.resources.persistence.ItemMasterMapper;
@@ -26,10 +27,11 @@ public class ItemMasterLoaderServiceTest {
 	private ItemMasterMapper itemMasterDao = mock(ItemMasterMapper.class);
 	private SectionService sectionService = mock(SectionService.class);
 	private ItemUpdaterService itemUpdaterService = mock(ItemUpdaterService.class);
+	private IHttpTableParser httpTableParser = mock(IHttpTableParser.class);
 	
 	@Before
 	public void init(){		
-		itemMasterLoaderService = new ItemMasterLoaderServiceImpl(itemMasterDao, sectionService, itemUpdaterService);
+		itemMasterLoaderService = new ItemMasterLoaderServiceImpl(itemMasterDao, sectionService, itemUpdaterService, httpTableParser);
 	}
 	
 	@Ignore

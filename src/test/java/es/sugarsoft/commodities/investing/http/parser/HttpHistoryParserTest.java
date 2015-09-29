@@ -1,21 +1,21 @@
-package es.sugarsoft.commodities.investing.html;
+package es.sugarsoft.commodities.investing.http.parser;
 
 import org.junit.Test;
 
 import es.sugarsoft.commodities.investing.http.parser.impl.HttpDetailParser;
+import es.sugarsoft.commodities.investing.http.parser.impl.HttpHistoryParser;
 import es.sugarsoft.commodities.investing.http.parser.impl.HttpTableParser;
 import es.sugarsoft.commodities.resources.Item;
 
-public class HttpDetailParserTest {
+public class HttpHistoryParserTest extends BaseHttparserConfig{
 	
 
-	private HttpDetailParser parser;
+	private HttpHistoryParser parser;
 	
 	@Test
 	public void shouldRetrieveItemInformation() throws Exception{
 		Item item = new Item();
 		item.setUrl("/commodities/gold");
-		parser = new HttpDetailParser(item.getUrl());
 		item= parser.getItemDetails(item);
 	}
 	
