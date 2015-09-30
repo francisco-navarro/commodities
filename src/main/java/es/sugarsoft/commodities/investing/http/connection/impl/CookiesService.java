@@ -42,6 +42,7 @@ public class CookiesService implements ICookiesService{
 			urlConn = initConnection();
 			// Connect to a html
 			urlConn.connect();
+			setCookies(urlConn.getHeaderFields());
 			// Close the html connection
 			urlConn.getInputStream().close();
 		}catch(Exception e){
@@ -64,11 +65,17 @@ public class CookiesService implements ICookiesService{
 
 	@Override
 	public String getPHPSESSID() {
+		if(PHPSESSID==null){
+			renewCookies(8830);
+		}
 		return PHPSESSID;
 	}
 
 	@Override
 	public String getFpros_popup() {
+		if(fpros_popup==null){
+			renewCookies(8830);
+		}
 		return fpros_popup;
 	}
 

@@ -63,7 +63,7 @@ public class HttpTableParser implements IHttpTableParser {
 				for(int j=0;j<elems.size();j++){
 					Item c = CommodityDeserializer.deserialize(elems.get(j));					
 					//c.setJson(getAdditionalData(c));
-					c = getDetailData(c);
+					getDetailData(c);
 					list.add(c);
 				}
 			}

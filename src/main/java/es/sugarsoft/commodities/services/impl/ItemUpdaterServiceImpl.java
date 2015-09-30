@@ -34,7 +34,7 @@ public class ItemUpdaterServiceImpl implements ItemUpdaterService {
 	public void updateItem(long id) {
 		try {
 
-			String plainJson = socketChartConnectionService.getJsonData(id);
+			String plainJson = socketChartConnectionService.getJsonData(id,null,null);
 			JSONObject json = (JSONObject) parser.parse(plainJson);
 			
 			Map attributes = (Map) json.get("attr");

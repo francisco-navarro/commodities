@@ -1,4 +1,4 @@
-package es.sugarsoft.commodities.investing.http.parser;
+package es.sugarsoft.commodities.investing.http;
 
 import org.junit.runner.RunWith;
 import org.springframework.context.annotation.ComponentScan;
@@ -14,7 +14,7 @@ import es.sugarsoft.test.support.appconfig.DataSourceConfig;
 
 @ContextConfiguration
 @RunWith(SpringJUnit4ClassRunner.class)
-public class BaseHttparserConfig {
+public class BaseHttpParserConfig {
 
 	@Configuration
 	@ComponentScan(basePackageClasses = {HtmlConnectionService.class, HttpTableParser.class})

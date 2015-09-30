@@ -2,12 +2,11 @@ package es.sugarsoft.commodities.investing.http.parser;
 
 import org.junit.Test;
 
-import es.sugarsoft.commodities.investing.http.parser.impl.HttpDetailParser;
+import es.sugarsoft.commodities.investing.http.BaseHttpParserConfig;
 import es.sugarsoft.commodities.investing.http.parser.impl.HttpHistoryParser;
-import es.sugarsoft.commodities.investing.http.parser.impl.HttpTableParser;
 import es.sugarsoft.commodities.resources.Item;
 
-public class HttpHistoryParserTest extends BaseHttparserConfig{
+public class HttpHistoryParserTest extends BaseHttpParserConfig{
 	
 
 	private HttpHistoryParser parser;
