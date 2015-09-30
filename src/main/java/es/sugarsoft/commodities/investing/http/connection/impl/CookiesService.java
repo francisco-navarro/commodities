@@ -26,15 +26,18 @@ public class CookiesService implements ICookiesService{
 			if (headerKey != null && headerKey.equals("Set-Cookie")) {
 				for (String cookie : headers.get(headerKey)) {
 					if (cookie.startsWith("PHPSESSID")) {
-						PHPSESSID =(cookie.replaceFirst(";.*", ""));
+						PHPSESSID =(cookie.replaceFirst(";.*", ""));						
 					} else if (cookie.startsWith("fpros_popup")) {
 						fpros_popup = (cookie.replaceFirst(";.*", ""));
 					}
 				}
 			}
 		}
+		
+		HttpConenction.injectCookies(PHPSESSID, fpros_popup);
 	}
 
+	@Override
 	public synchronized void renewCookies(long id){		
 
 		URLConnection urlConn;
@@ -65,17 +68,11 @@ public class CookiesService implements ICookiesService{
 
 	@Override
 	public String getPHPSESSID() {
-		if(PHPSESSID==null){
-			renewCookies(8830);
-		}
 		return PHPSESSID;
 	}
 
 	@Override
 	public String getFpros_popup() {
-		if(fpros_popup==null){
-			renewCookies(8830);
-		}
 		return fpros_popup;
 	}
 

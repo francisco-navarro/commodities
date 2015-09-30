@@ -18,6 +18,7 @@ public class ChartEngine implements IChartEngine {
 		this.htmlConnectionService = htmlConnectionService;
 	}
 	
+	
 	@Override
 	public String getJson(long id) throws Exception{
 		return htmlConnectionService.connect(UriConstants.CHART_URL.replace("###", Long.toString(id)));

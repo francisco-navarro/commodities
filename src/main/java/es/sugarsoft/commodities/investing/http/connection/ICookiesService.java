@@ -11,4 +11,6 @@ public interface ICookiesService {
 
 	void setCookies(Map<String, List<String>> headers);
 
+	public void renewCookies(long id);
+
 }

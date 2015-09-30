@@ -8,6 +8,5 @@ public interface IHttpTableParser {
 
 	List<Item> getItemsFromTableUrl(String html);
 
-	String getAdditionalData(Item c);
-
+	
 }

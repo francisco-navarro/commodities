@@ -26,12 +26,10 @@ public class HttpTableParserTest extends BaseHttpParserConfig{
 	@Autowired
 	private IHtmlConnectionService htmlConnectionService;
 	
-	@Autowired
-	private IChartEngine chartEngine;
-
+	
 	@Before
 	public void init(){
-		parser = new HttpTableParser(httpDetailParser, htmlConnectionService, chartEngine);
+		parser = new HttpTableParser(httpDetailParser, htmlConnectionService);
 	}
 	
 	@Test

@@ -20,12 +20,11 @@ public class ItemUpdaterServiceImpl implements ItemUpdaterService {
 
 	private ItemMapper itemDao;
 	private SocketChartConnectionService socketChartConnectionService;
-	private JSONParser parser;
+
 
 	@Autowired
 	public ItemUpdaterServiceImpl(ItemMapper itemDao,
 			SocketChartConnectionService socketChartConnectionService) {
-		parser = new JSONParser();
 		this.itemDao = itemDao;
 		this.socketChartConnectionService = socketChartConnectionService;
 	}
@@ -34,8 +33,7 @@ public class ItemUpdaterServiceImpl implements ItemUpdaterService {
 	public void updateItem(long id) {
 		try {
 
-			String plainJson = socketChartConnectionService.getJsonData(id,null,null);
-			JSONObject json = (JSONObject) parser.parse(plainJson);
+			JSONObject json = socketChartConnectionService.getJsonData(id,null,null);
 			
 			Map attributes = (Map) json.get("attr");
 

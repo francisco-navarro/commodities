@@ -26,16 +26,13 @@ public class HttpTableParser implements IHttpTableParser {
 	private JSONParser jsonParser;
 	private IHttpDetailParser httpDetailParser;
 	private IHtmlConnectionService htmlConnectionService;
-	private IChartEngine chartEngine;
 	
 	@Autowired
 	public HttpTableParser(IHttpDetailParser httpDetailParser,
-			IHtmlConnectionService htmlConnectionService,
-			IChartEngine chartEngine){
+			IHtmlConnectionService htmlConnectionService){
 		jsonParser=new JSONParser();
 		this.httpDetailParser = httpDetailParser;
 		this.htmlConnectionService = htmlConnectionService;
-		this.chartEngine = chartEngine;
 	}
 	
 	@Override
@@ -76,19 +73,20 @@ public class HttpTableParser implements IHttpTableParser {
 		return httpDetailParser.getItemDetails(c);
 	}
 	
-	@Override
-	public String getAdditionalData(Item c) {
-		try {			
-			JSONObject json = (JSONObject) jsonParser.parse(
-					chartEngine.getJson(c.getId()));			
-			
-			Map attributes =(Map) json.get("attr");
-
-			return attributes.toString();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
+//	@Override
+//	public String getAdditionalData(Item c) {
+//		//TODO: Esto no puede ir aqui ya que es otro tipo de parser
+//		try {			
+//			JSONObject json = (JSONObject) jsonParser.parse(
+//					chartEngine.getJson(c.getId()));			
+//			
+//			Map attributes =(Map) json.get("attr");
+//
+//			return attributes.toString();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		return null;
+//	}
 
 }
