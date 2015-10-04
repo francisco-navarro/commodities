@@ -48,7 +48,6 @@ public class HttpConenction {
 		this.referer = "http://es.investing.com/commodities/";
 		this.method = method;
 		this.accept_types = acceptTypes;
-		params = "action=historical_data&curr_id=8830&st_date=03%2F08%2F2015&end_date=22%2F08%2F2015&interval_sec=Daily";
 		
 		try {
 			this.url = new java.net.URL("http://es."+DOMAIN);
@@ -136,6 +135,10 @@ public class HttpConenction {
 		return output;
 	}
 	
+	public void setParams(String params) {
+		this.params = params;
+	}
+
 	public String getJson() {
 		if(json==null){
 			makePetition();
