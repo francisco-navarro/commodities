@@ -2,6 +2,7 @@ package es.sugarsoft.commodities.resources.persistence;
 
 import java.util.Date;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ import es.sugarsoft.commodities.services.impl.WorkerServiceImpl;
 import es.sugarsoft.commodities.servlet.config.MyBatisConfig;
 import es.sugarsoft.test.support.appconfig.DataSourceConfig;
 
-
+@Ignore
 @ContextConfiguration
 @RunWith(SpringJUnit4ClassRunner.class)
 public class ItemMapperIntegrationTest {

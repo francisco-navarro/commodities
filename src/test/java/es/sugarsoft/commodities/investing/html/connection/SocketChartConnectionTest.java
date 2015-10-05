@@ -38,7 +38,7 @@ public class SocketChartConnectionTest extends BaseHttpParserConfig{
 		cookiesService.renewCookies(8830);
 		
 		final long id = 8830;
-		JSONObject json = socketChartConnection.getJsonData(id, null, null);	
+		JSONObject json = socketChartConnection.getJsonData(id, 1800);	
 		
 		Map attributes =(Map) json.get("attr");
 		assertNotNull(attributes.get("last_value"));

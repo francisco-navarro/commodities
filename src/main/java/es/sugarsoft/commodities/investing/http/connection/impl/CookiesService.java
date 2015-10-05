@@ -6,6 +6,7 @@ import java.net.URLConnection;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import es.sugarsoft.commodities.investing.http.connection.ICookiesService;
@@ -18,6 +19,11 @@ public class CookiesService implements ICookiesService{
 
 	private static String PHPSESSID;
 	private static String fpros_popup;
+	
+	@Autowired
+	public void initCookies(){
+		renewCookies(8833);
+	}
 
 	@Override
 	public void setCookies(Map<String, List<String>> headers) {
@@ -38,7 +44,7 @@ public class CookiesService implements ICookiesService{
 	}
 
 	@Override
-	public synchronized void renewCookies(long id){		
+	public void renewCookies(long id){		
 
 		URLConnection urlConn;
 		try{

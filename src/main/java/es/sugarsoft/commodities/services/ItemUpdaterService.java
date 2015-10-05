@@ -15,7 +15,7 @@ public interface ItemUpdaterService {
 	 * conexion y realizando todo el proceso.
 	 * @param id
 	 */
-	void updateItem(long id);
+	void updateItem(long id, int interval);
 
 	/**
 	 * Recoge los valores numericos de un item
@@ -24,5 +24,7 @@ public interface ItemUpdaterService {
 	 * @return
 	 */
 	Item getValues(long id, long interval);
+
+	
 
 }

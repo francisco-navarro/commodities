@@ -24,22 +24,52 @@ public class SocketChartConnectionService  implements ISocketChartConnectionServ
 		parser = new JSONParser();
 	}
 
+	private enum Interval {
+		
+		MINUTE(300),
+		MINUTES_5(60),
+		MINUTES_15(900),
+		MINUTES_30(1800),
+		HOUR(3600),
+		HOURS_5(18000),
+		DAY(86400);
+		
+		private Integer value;
+		
+		private Interval(int value){
+			this.value = value;
+		}
+		
+		public int getValue(){
+			return value;
+		}
+
+		public static Interval getNextInterval(int secondsInterval) {
+			for(Interval interval : Interval.values()){
+				if(interval.getValue()< secondsInterval){
+					return interval;
+				}
+			}
+			return MINUTES_30;
+		}
+	}
 
 	@Override
-	public JSONObject getJsonData(long id,  Date fromDate, Date endDate) throws ParseException {
+	public JSONObject getJsonData(long id,  int interval) throws ParseException {
 
 		HttpConenction connection = null;
-		connection = new HttpConenction(buildURI(id),ACCEPT_TYPES);
+		connection = new HttpConenction(buildURI(id,interval),ACCEPT_TYPES);
 		String plainJson = connection.getJson();
 		return (JSONObject) parser.parse(plainJson);
 
 	}
 
-	private String buildURI(long id) {
+	private String buildURI(long id, int secondsInterval) {
+		Interval nextInterval = Interval.getNextInterval(secondsInterval);
 		String uri = URI + "?";
 		uri += "pair_id=" +id+ "&" +
 				"chart_type=area" + "&" +
-				"pair_interval=1800" + "&" + 
+				"pair_interval="+nextInterval.getValue() + "&" + 
 				"candle_count=25" + "&" +
 				"events=no" + "&" +
 				"volume_series=yes";

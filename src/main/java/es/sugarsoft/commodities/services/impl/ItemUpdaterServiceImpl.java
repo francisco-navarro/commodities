@@ -28,12 +28,12 @@ public class ItemUpdaterServiceImpl implements ItemUpdaterService {
 		this.itemDao = itemDao;
 		this.socketChartConnectionService = socketChartConnectionService;
 	}
-
+	
 	@Override
-	public void updateItem(long id) {
+	public void updateItem(long id, int interval) {
 		try {
-
-			JSONObject json = socketChartConnectionService.getJsonData(id,null,null);
+			
+			JSONObject json = socketChartConnectionService.getJsonData(id,interval);
 			
 			Map attributes = (Map) json.get("attr");
 
@@ -48,6 +48,7 @@ public class ItemUpdaterServiceImpl implements ItemUpdaterService {
 				itemDao.add(pairId, time, qty);
 
 			}
+			//TODO: borrar los anteriores a dos dias
 
 		} catch (Exception e) {
 			e.printStackTrace();

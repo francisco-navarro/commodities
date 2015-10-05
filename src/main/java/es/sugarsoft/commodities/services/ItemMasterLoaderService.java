@@ -8,14 +8,9 @@ package es.sugarsoft.commodities.services;
 public interface ItemMasterLoaderService {
 
 	/**
-	 * Dada una parte de uri, recorre la tabla en busca de sus elementos
-	 * @param uri
-	 */
-	void loadTableItems(String market, String table);
-
-	/**
 	 * Dada una uri, recorre la tabla en busca de sus elementos
-	 * @param uri
+	 * La uri de la tabla está guardada en bbdd
+	 * @param id de la seccion
 	 */
 	void loadTableItemsFromSectionId(long id);
 

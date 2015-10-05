@@ -40,24 +40,6 @@ public class ItemMasterLoaderServiceImpl implements ItemMasterLoaderService {
 		this.httpTableParser = httpTableParser;
 	}
 
-	@Override
-	@Deprecated
-	public void loadTableItems(String market, String table) {
-
-		try {
-			String url = UriConstants.getTableUri(market + "/" + URLEncoder.encode(table, "UTF-8"));						
-			List<Item> list = httpTableParser.getItemsFromTableUrl(url);
-
-			for (Item commodity : list) {
-				itemMasterDao.add(commodity, 2l);
-				itemUpdaterService.updateItem(commodity.getId());
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-	}
 	
 	@Override
 	public void  loadTableItemsFromSectionId(long id){
@@ -68,7 +50,7 @@ public class ItemMasterLoaderServiceImpl implements ItemMasterLoaderService {
 
 			for (Item commodity : list) {
 				itemMasterDao.add(commodity,id);
-				itemUpdaterService.updateItem(commodity.getId());
+				itemUpdaterService.updateItem(commodity.getId(),1800);
 			}
 
 		} catch (Exception e) {
@@ -81,5 +63,6 @@ public class ItemMasterLoaderServiceImpl implements ItemMasterLoaderService {
 		Section section = sectionService.get(id);
 		return section.getUrl();
 	}
+
 
 }

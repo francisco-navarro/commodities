@@ -59,9 +59,15 @@ public class ResourceController {
 	}
 
 	@RequestMapping(value = "/resource/{id}", method = RequestMethod.PUT, produces = "application/json")
-	public @ResponseBody String updateItemValues(HttpServletRequest request, @PathVariable("id") Long id) {
-
-		itemUpdaterService.updateItem(id);
+	public @ResponseBody String updateItemValues(HttpServletRequest request, 
+			@PathVariable("id") Long id) {
+		if(request.getParameter("interval")==null){
+			itemUpdaterService.updateItem(id,1800);
+		}else{
+			int interval = Integer.valueOf(request.getParameter("interval"));
+			itemUpdaterService.updateItem(id,interval);
+		}
+		
 		return null;
 	}
 
