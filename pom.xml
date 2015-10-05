@@ -90,8 +90,8 @@
 			<artifactId>h2</artifactId>
 			<version>1.4.187</version>
 		</dependency>
-
-
+		
+		
 		<dependency>
 			<groupId>hsqldb</groupId>
 			<artifactId>hsqldb</artifactId>
@@ -141,7 +141,7 @@
 			<artifactId>log4j</artifactId>
 			<version>1.2.16</version>
 		</dependency>
-
+		
 	</dependencies>
 	<build>
 		<finalName>commodities</finalName>
@@ -156,11 +156,7 @@
 						<target>1.7</target>
 						<encoding>UTF-8</encoding>
 					</configuration>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-compiler-plugin</artifactId>
-				</plugin>
+				</plugin>				
 			</plugins>
 		</pluginManagement>
 	</build>
