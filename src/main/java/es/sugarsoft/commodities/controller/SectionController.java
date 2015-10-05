@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import es.sugarsoft.commodities.resources.Section;
@@ -29,10 +30,16 @@ public class SectionController {
 
 	@ResponseBody
 	@RequestMapping(value = "/sections/{id}", method = RequestMethod.GET, produces = "application/json")
-	public List<Section> getById(
-			@PathVariable("id") Integer id){
-		
-		return sectionService.getByParentId(id);			
+	public Section getById(
+			@PathVariable("id") Integer id){		
+		return sectionService.get(id);			
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/sections", method = RequestMethod.GET, produces = "application/json")
+	public List<Section> getByParentId(
+			@RequestParam(value = "parentId", required = true) int parentId){
+		return sectionService.getByParentId(parentId);				
 	}
 	
 	@ResponseBody

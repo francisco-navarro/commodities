@@ -10,6 +10,7 @@ public class Section implements Serializable {
 	private String description;
 	private String url;
 	private List<Long> resources;
+	private List<ItemHistory> historicalTable;
 	
 	public Section(){
 		
@@ -44,6 +45,14 @@ public class Section implements Serializable {
 	}
 	public void setUrl(String url) {
 		this.url = url;
+	}
+
+	public List<ItemHistory> getHistoricalTable() {
+		return historicalTable;
+	}
+
+	public void setHistoricalTable(List<ItemHistory> historicalTable) {
+		this.historicalTable = historicalTable;
 	}
 	
 

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import es.sugarsoft.commodities.resources.Section;
+import es.sugarsoft.commodities.resources.persistence.ItemHistoryMapper;
 import es.sugarsoft.commodities.resources.persistence.ItemMapper;
 import es.sugarsoft.commodities.resources.persistence.SectionMapper;
 import es.sugarsoft.commodities.services.SectionService;
@@ -14,16 +15,19 @@ import es.sugarsoft.commodities.services.SectionService;
 public class SectionServiceImpl implements SectionService {
 	
 	private SectionMapper sectionDao;
+	private ItemHistoryMapper itemHistoryMapper;
 	private ItemMapper itemDao;
 	
 	private static final long INTERVAL = 1l;
 	
 	@Autowired
 	public SectionServiceImpl(SectionMapper sectionDao,
-			ItemMapper itemDao) {
+			ItemMapper itemDao,
+			ItemHistoryMapper itemHistoryMapper) {
 		super();
 		this.sectionDao = sectionDao;
 		this.itemDao = itemDao;
+		this.itemHistoryMapper = itemHistoryMapper;
 	}
 
 
@@ -39,7 +43,9 @@ public class SectionServiceImpl implements SectionService {
 
 	@Override
 	public Section get(long id) {
-		return sectionDao.getById(id);
+		Section section = sectionDao.getById(id);
+		section.setHistoricalTable(itemHistoryMapper.getHistoricalTableBySection(id));
+		return section;
 	}
 
 }
