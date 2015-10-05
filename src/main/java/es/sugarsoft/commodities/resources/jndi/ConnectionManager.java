@@ -1,4 +1,4 @@
-package es.sugarsoft.commodities.resources.h2;
+package es.sugarsoft.commodities.resources.jndi;
 
 import java.sql.Connection;
 
