@@ -1,5 +1,7 @@
 package es.sugarsoft.commodities.investing.html.connection;
 
+import static org.junit.Assert.*;
+
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
@@ -32,10 +34,27 @@ public class SocketHistoricalConnectionTest extends BaseHttpParserConfig{
 	public void connectChart() throws IOException, ParseException{		
 
 		final long id = 8830;		
-		String data = socketHistoricalConnection.getData(id, getLastWeek(),  new Date());
-		
-
+		String data = socketHistoricalConnection.getData(id, getLastWeek(),  new Date());	
+		assertTrue(data.contains("Fecha"));
 	}
+	
+	@Test
+	public void connectChart2() throws IOException, ParseException{		
+
+		final long id = 40751;		
+		String data = socketHistoricalConnection.getData(id, getLastWeek(),  new Date());	
+		assertTrue(data.contains("Fecha"));
+	}
+	
+	@Test
+	public void connectChart3() throws IOException, ParseException{		
+
+		final long id = 49780;		
+		String data = socketHistoricalConnection.getData(id, getLastWeek(),  new Date());	
+		assertTrue(data.contains("Fecha"));
+	}
+	
+	
 
 	private Date getLastWeek() {
 		Calendar cal = Calendar.getInstance();

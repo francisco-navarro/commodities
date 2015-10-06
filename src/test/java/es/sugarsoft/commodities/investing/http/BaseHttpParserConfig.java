@@ -14,7 +14,7 @@ import es.sugarsoft.test.support.appconfig.DataSourceConfig;
 
 @ContextConfiguration
 @RunWith(SpringJUnit4ClassRunner.class)
-public class BaseHttpParserConfig {
+public abstract class BaseHttpParserConfig {
 
 	@Configuration
 	@ComponentScan(basePackageClasses = {HtmlConnectionService.class, HttpTableParser.class})

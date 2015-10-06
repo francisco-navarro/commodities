@@ -14,7 +14,7 @@ import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import es.sugarsoft.commodities.investing.http.connection.ISocketHistoricalChartConnectionService;
+import es.sugarsoft.commodities.investing.http.connection.ISocketHistoricalConnectionService;
 import es.sugarsoft.commodities.investing.http.connection.impl.HtmlConnectionService;
 import es.sugarsoft.commodities.investing.http.parser.IHttpHistoryParser;
 import es.sugarsoft.commodities.resources.Item;
@@ -27,22 +27,22 @@ public class HttpHistoryParser implements IHttpHistoryParser {
 	private static final Logger logger = Logger.getLogger(HtmlConnectionService.class);
 	private static final SimpleDateFormat monthParser = new SimpleDateFormat("MMM dd",Locale.ENGLISH);
 
-	private ISocketHistoricalChartConnectionService connection;
+	private ISocketHistoricalConnectionService connection;
 	
 	@Autowired
-	public HttpHistoryParser(ISocketHistoricalChartConnectionService connection){
+	public HttpHistoryParser(ISocketHistoricalConnectionService connection){
 		this.connection = connection;
 	}
 	
 	@Override
-	public List<ItemHistory> getItemDetails(Item item, Date fromDate, Date endDate) {
+	public List<ItemHistory> getItemDetails(long itemId, Date fromDate, Date endDate) {
 		
 		String html = null;
 		try {
-			html = connection.getData(item.getId(), fromDate, endDate);
+			html = connection.getData(itemId, fromDate, endDate);
 			Document doc = Jsoup.parse(html);
 			Elements rows = doc.select(".historicalTbl > tbody > tr");
-			return parseRows(item.getId(), rows);
+			return parseRows(itemId, rows);
 		}catch(Exception e){
 			logger.error("Error leyendo html:\n"+html,e);
 		}

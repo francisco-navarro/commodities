@@ -16,7 +16,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import es.sugarsoft.commodities.investing.http.connection.ISocketHistoricalChartConnectionService;
+import es.sugarsoft.commodities.investing.http.connection.ISocketHistoricalConnectionService;
 import es.sugarsoft.commodities.investing.http.parser.impl.HttpHistoryParser;
 import es.sugarsoft.commodities.resources.Item;
 import es.sugarsoft.commodities.resources.ItemHistory;
@@ -27,7 +27,7 @@ public class HttpHistoryParserTest {
 	
 	@Before
 	public void init(){
-		ISocketHistoricalChartConnectionService connection = mock(ISocketHistoricalChartConnectionService.class);
+		ISocketHistoricalConnectionService connection = mock(ISocketHistoricalConnectionService.class);
 		parser = new HttpHistoryParser(connection );
 		String html = getHtml();
 		when(connection.getData(anyLong(), any(Date.class), any(Date.class))).thenReturn(html );
@@ -54,7 +54,7 @@ public class HttpHistoryParserTest {
 	public void shouldRetrieveItemInformation() throws Exception{
 		Item item = new Item();
 		item.setUrl("/commodities/gold");
-		List<ItemHistory> list = parser.getItemDetails(item, new Date(), new Date() );
+		List<ItemHistory> list = parser.getItemDetails(item.getId(), new Date(), new Date() );
 		assertTrue(!list.isEmpty());
 	}
 	

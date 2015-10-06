@@ -9,6 +9,6 @@ import es.sugarsoft.commodities.resources.ItemHistory;
 public interface IHttpHistoryParser {
 
 
-	List<ItemHistory> getItemDetails(Item item, Date dateFrom, Date dateTo);
+	List<ItemHistory> getItemDetails(long itemId, Date dateFrom, Date dateTo);
 
 }

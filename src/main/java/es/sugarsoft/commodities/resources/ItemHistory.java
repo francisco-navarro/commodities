@@ -4,14 +4,16 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class ItemHistory implements Serializable {
-	
+
 	private long itemId;
+	private String description;
 	private float max;
 	private float min;
 	private float var;
 	private Date day;
 	private float openValue;
 	private float closeValue;
+	
 	public long getItemId() {
 		return itemId;
 	}
@@ -54,7 +56,17 @@ public class ItemHistory implements Serializable {
 	public void setCloseValue(float closeValue) {
 		this.closeValue = closeValue;
 	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
 	
+	@Override
+	public String toString() {
+		return "ItemHistory [itemId=" + itemId + ", description=" + description + ", day=" + day + "]";
+	}
 	
 
 }

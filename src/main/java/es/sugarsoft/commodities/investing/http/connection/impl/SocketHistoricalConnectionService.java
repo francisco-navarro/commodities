@@ -8,10 +8,10 @@ import java.util.Date;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
-import es.sugarsoft.commodities.investing.http.connection.ISocketHistoricalChartConnectionService;
+import es.sugarsoft.commodities.investing.http.connection.ISocketHistoricalConnectionService;
 
 @Service("socketHistoricalConnectionService")
-public class SocketHistoricalConnectionService  implements ISocketHistoricalChartConnectionService{
+public class SocketHistoricalConnectionService  implements ISocketHistoricalConnectionService{
 
 	private static final Logger logger = Logger.getLogger(SocketHistoricalConnectionService.class);
 
@@ -26,24 +26,24 @@ public class SocketHistoricalConnectionService  implements ISocketHistoricalChar
 		String params = buildParams(id, fromDate, endDate); //"action=historical_data&curr_id="+id+"&st_date=03%2F08%2F2015&end_date=22%2F08%2F2015&interval_sec=Daily";
 		connection = new HttpConenction(URI_HISTORICAL, ACCEPT_TYPES, "POST");
 		connection.setParams(params);
-		return connection.getJson();
+		logger.debug("Consultando con parametros "+params);
+		return connection.getHtml();
 
 	}
 
 
 	private String buildParams(long id, Date fromDate, Date endDate){
-		String date1 ="";
-		System.out.println();
+		String date1 ="";		
 		String date2 ="";
 		try {
 			date1 = URLEncoder.encode(dateFormatter.format(fromDate),"UTF-8");
 			date2 = URLEncoder.encode(dateFormatter.format(endDate),"UTF-8");
 		} catch (UnsupportedEncodingException e) {
 			logger.error("Error parseando fecha ",e);
-		}
+		}		
 		return "action=historical_data&curr_id="+id+
-				"&st_date="+date1+
-				"&end_date="+date2+
+				"&end_date="+date1+
+				"&st_date="+date2+
 				"&interval_sec=Daily";		
 	}
 

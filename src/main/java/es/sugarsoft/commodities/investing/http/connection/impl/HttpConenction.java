@@ -85,6 +85,10 @@ public class HttpConenction {
 			wr.close();
 			rd.close();
 			
+			if(sb.length()>0){
+				html = sb.toString();
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
