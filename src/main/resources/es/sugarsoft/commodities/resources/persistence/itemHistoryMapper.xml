@@ -27,7 +27,7 @@
 			left join ITEM_HISTORY H on IM.ID = H.ITEM_ID AND DAY =#{date}
 		where 
 			H.ITEM_ID is null
-			AND POINT_VALUE is not null
+			AND CLOSE_VALUE is not null
 			AND SECTION_ID = #{id}
 		limit 100
 	</select>
