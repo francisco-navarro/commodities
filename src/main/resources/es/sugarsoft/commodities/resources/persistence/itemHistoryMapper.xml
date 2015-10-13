@@ -26,8 +26,7 @@
 		from ITEM_MASTER IM
 			left join ITEM_HISTORY H on IM.ID = H.ITEM_ID AND DAY =#{date}
 		where 
-			H.ITEM_ID is null
-			AND CLOSE_VALUE is not null
+			H.ITEM_ID is null			
 			AND SECTION_ID = #{id}
 		limit 100
 	</select>
