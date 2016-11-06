@@ -1,0 +1,26 @@
+{
+  "name": "commodities",
+  "version": "0.0.1",
+  "description": "",
+  "main": "server/app.js",
+  "scripts": {
+    "test": "istanbul cover --include-all-sources jasmine-node test/**/*.spec.js",
+    "start": "node server/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/francisco-navarro/commodities.git"
+  },
+  "author": "Paco Navarro",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/francisco-navarro/commodities/issues"
+  },
+  "homepage": "https://github.com/francisco-navarro/commodities#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  },
+  "devDependencies": {
+    "jasmine-node": "^1.14.5"
+  }
+}
