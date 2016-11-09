@@ -21,6 +21,14 @@
     "express": "^4.14.0"
   },
   "devDependencies": {
-    "jasmine-node": "^1.14.5"
+    "eslint": "^3.9.1",
+    "eslint-config-airbnb": "^13.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^3.0.1",
+    "eslint-plugin-react": "^6.6.0",
+    "express": "^4.14.0",
+    "istanbul": "^0.4.5",
+    "jasmine-node": "^1.14.5",
+    "mongoose": "^4.6.0"
   }
 }
