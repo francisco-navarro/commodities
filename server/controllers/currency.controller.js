@@ -3,10 +3,10 @@ var constants = require('./../constants');
 var currencies = {};
 
 function init() {
-   getAllCurrencies();
+   recordAllCurrencies();
 }
 
-function getAllCurrencies() {
+function recordAllCurrencies() {
    rp(constants.CURRENCY_URL)
       .then(function(response) {
          var data = JSON.parse(response);
@@ -18,6 +18,11 @@ function getAllCurrencies() {
       }).catch(function(err) {
          console.error(err);
       });
+}
+
+function getAll(req, res){
+      res.json(currencies);
+      res.status(200).end();
 }
 
 function getCurrency(req, res) {
@@ -34,7 +39,7 @@ function getCurrency(req, res) {
 init();
 
 module.exports = {
-   getAllCurrencies: getAllCurrencies,
    getCurrency: getCurrency,
-   get: getCurrency
+   get: getCurrency,
+   getAll: getAll
 };
