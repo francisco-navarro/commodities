@@ -14,6 +14,8 @@ const inject = require('gulp-inject');
 const wiredep = require('wiredep').stream;
 const angularFilesort = require('gulp-angular-filesort');
 
+const baseDir = 'client/app';
+
 module.exports = function(gulp, conf, globOptions) {
     /******* MAIN TASKS *******/
 
@@ -27,7 +29,7 @@ module.exports = function(gulp, conf, globOptions) {
    gulp.task('copy-index', ['wiredep-html', 'inject-js', 'inject-css', 'clean-index', 'clean-js', 'clean-css'], function() {
       var assets = useref.assets();
 
-      var task = gulp.src('index.html', globOptions)
+      var task = gulp.src('client/index.html', globOptions)
             .pipe(assets)
             //.pipe(gulpif('**/lib.js', ngAnnotate()))
             .pipe(gulpif('**/combined-min.js', ngAnnotate()));
@@ -55,31 +57,33 @@ module.exports = function(gulp, conf, globOptions) {
    });
 
    gulp.task('wiredep-html', function() {
-      return gulp.src('index.html')
+      return gulp.src('client/index.html')
             .pipe(wiredep({
                dependencies: true
             }))
-            .pipe(gulp.dest(''));
+            .pipe(gulp.dest('client/'));
    });
 
 
-   gulp.task('inject-js', ['create-templates'], function() {
-      return gulp.src('index.html')
+   gulp.task('inject-js', [/*'create-templates'*/], function() {
+      console.log('Skipping creating templates');
+      return gulp.src('client/index.html')
             .pipe(inject(
-                gulp.src(['app/js/**/*.js']).pipe(angularFilesort()).pipe(angularFilesort()), {
+                gulp.src([baseDir + '/js/**/*.js']).pipe(angularFilesort()).pipe(angularFilesort()), {
                    relative: true
                 }
             ))
-            .pipe(gulp.dest(''));
+            .pipe(gulp.dest('client/'));
    });
 
    gulp.task('inject-css', function() {
-      return gulp.src('index.html').pipe(inject(gulp.src(['app/css/**/*.css'], { read: false })))
-            .pipe(gulp.dest(''));
+      return gulp.src('client/index.html').pipe(inject(gulp.src([baseDir + '/css/**/*.css'], { read: false })))
+            .pipe(gulp.dest('client/'));
    });
 
    gulp.task('create-templates', function() {
-      return gulp.src('app/html/**/*.html')
+      console.log('create templates '+ baseDir + '/html/**/*.html');
+      return gulp.src(baseDir + '/html/**/*.html')
         //.pipe(htmlmin({}))
             .pipe(templateCache('app-core-templates.js', {
                root: 'html',
@@ -88,7 +92,7 @@ module.exports = function(gulp, conf, globOptions) {
                moduleSystem: 'IIFE'
             }))
             .pipe(uglify())
-            .pipe(gulp.dest('app/js/core/'));
+            .pipe(gulp.dest(baseDir + '/js/core/'));
    });
 
 

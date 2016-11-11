@@ -1,4 +1,5 @@
 var express = require('express');
+var proxy = require('express-http-proxy');
 var app = express();
 
 var clientPort = process.env.NODEJS_PORT || 3001;
@@ -17,3 +18,8 @@ app.use('/api', proxy(serverIpAddress, {
    },
    port: serverPort
 }));
+
+app.use('/', express.static(__dirname));
+app.use('/client/', express.static(__dirname));
+console.log(__dirname + '/app/html');
+app.use('/html/', express.static(__dirname + '/app/html'));
