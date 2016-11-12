@@ -8,8 +8,8 @@
          getCurrencies: getCurrencies
       };
       function getCurrencies() {
-         return $http.get('api/currencies').then(function(data) {
-            return data;
+         return $http.get('api/currencies').then(function(response) {
+            return response.data;
          });
       }
    }

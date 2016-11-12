@@ -1,3 +1,5 @@
 <ul>
-   <li ng-repeat="currency in $ctrl.money">{{currency}}</li>
+   <li ng-repeat="currency in $ctrl.money">{
+      {currency.name}} - {{currency.price}}
+   </li>
 </ul>
