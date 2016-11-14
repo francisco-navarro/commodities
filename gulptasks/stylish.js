@@ -78,7 +78,7 @@ module.exports = function(gulp, conf, globOptions) {
 
    gulp.task('inject-css', function() {
       return gulp.src('client/index.html').pipe(inject(gulp.src([baseDir + '/css/**/*.css'], { read: false })))
-            .pipe(gulp.dest('client/'));
+            .pipe(gulp.dest('/'));
    });
 
    gulp.task('create-templates', function() {
