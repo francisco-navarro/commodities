@@ -18,13 +18,13 @@
   },
   "homepage": "https://github.com/francisco-navarro/commodities#readme",
   "dependencies": {
+    "body-parser": "^1.15.2",
     "express": "^4.14.0",
     "express-http-proxy": "^0.10.1"
   },
   "devDependencies": {
     "browser-sync": "^2.18.5",
     "eslint": "^3.9.1",
-    "eslint-config-airbnb": "^13.0.0",
     "express": "^4.14.0",
     "istanbul": "^0.4.5",
     "jasmine-node": "^1.14.5"
