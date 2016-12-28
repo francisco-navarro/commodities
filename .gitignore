@@ -4,3 +4,5 @@ coverage/
 .vscode
 node_modules/
 bower_components/
+**/app/*.js
+*.map
