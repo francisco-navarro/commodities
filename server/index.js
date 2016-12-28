@@ -1,14 +1,9 @@
 var bodyParser = require('body-parser');
+var routes = require('./routes');
 
 function init(app) {
   app.use(bodyParser.json());
-
-  app.get('/api', function(req, res) {
-    res.json({
-      message: 'It works'
-    });
-    res.status(200).end();
-  });
+    
 }
 
 module.exports = {
