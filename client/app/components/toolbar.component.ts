@@ -4,11 +4,15 @@ import { Component } from '@angular/core';
   selector: 'commodities-toolbar',
   template: `
    <div>
-    <h1 class="title">commodities play</h1>
+    <h1 class="title" [routerLink]="''">
+      <i class="material-icons">open_with</i>
+      commodities play
+    </h1>
     <ul>
       <li *ngFor="let option of options" 
         (click)="onSelect(option)"
-        [class.selected]="option === selected">
+        [class.selected]="option === selected"
+        [routerLink]="[option.text | lowercase]">
         {{option.text}}
       </li>
     </ul>
@@ -26,6 +30,7 @@ import { Component } from '@angular/core';
       list-style-type: none;
     }
     li { 
+      border-bottom: 2px solid white;
       cursor: pointer;
       float: left;
       margin-left: 10px;
@@ -39,7 +44,7 @@ import { Component } from '@angular/core';
       margin-top: 10px;
     }
     li:hover {
-      background-color: #CFD8DC !important;
+      background-color: #d9dbe2;
       border-bottom: 2px solid #CFD8DC;
     }
     .title {
@@ -47,8 +52,8 @@ import { Component } from '@angular/core';
       float: left;
     }
     .selected {
-      background-color: #CFD8DC !important;
-      border-bottom: 2px solid green !important;
+      background-color: #d9dbe2;
+      border-bottom: 2px solid #FBC02D !important;
     }
   `]
 })

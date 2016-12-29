@@ -4,8 +4,16 @@ import { Component } from '@angular/core';
   selector: 'my-app',
   template: `
    <commodities-toolbar></commodities-toolbar>
-   <router-outlet></router-outlet>
-  `
+   <div>
+    <router-outlet></router-outlet>
+   </div>
+  `,
+  styles: [`
+    div {
+      text-align: center;
+      padding: 35px;
+    }
+  `]
 })
 export class AppComponent {
   title = 'Commodities works fine!';

@@ -5,14 +5,26 @@ import { CurrencyService } from '../services/currency.service';
 @Component({
   selector: 'my-dashboard',
   template: `
-    <span>Hello world</span>
-  `
-})
-export class DashboardComponent implements OnInit {
-
-    constructor(private currencyService: CurrencyService) { }
-
-    ngOnInit() : void {
-      //nothing yet
+    <div>
+      <h2 class="title">
+        <i class="material-icons">face</i>
+        Get started today
+      </h2>
+    </div>
+  `,
+  styles: [`
+    div {
+      background-image: url("img/back-intro.png");
+      background-origin: content-box;
+      min-height: 400px;
     }
+    .title {
+      font-size: 1.2em;
+      font-family: Tahoma;
+      font-weight: 100;
+      padding-top: 100px;
+    }
+  `]
+})
+export class DashboardComponent {
 }
