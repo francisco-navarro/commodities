@@ -11,7 +11,8 @@ export class CurrencyService {
   constructor(private http: Http) { }
 
   getCurrencies(): Promise<Currency[]> {
-    return this.http.get('http://openexchangerates.org/api/currencies.json').toPromise()
+    return this.http.get('http://openexchangerates.org/api/currencies.json')
+      .toPromise()
       .then(response =>
         Object.keys(response.json()).reduce((arr, next) => {
           arr.push({
