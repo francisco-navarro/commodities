@@ -2,14 +2,14 @@ import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule }    from '@angular/http';
 
-import { AppComponent }         from './components/app.component';
+import { AppComponent }       from './components/app.component';
 import { DashboardComponent } from './components/dashboard.component';
-import { ToolbarComponent } from './components/toolbar.component';
-import { CurrencyComponent } from './components/currency.component';
+import { ToolbarComponent }   from './components/toolbar.component';
+import { CurrencyComponent }  from './components/currency.component';
 
 import { CurrencyService } from './services/currency.service';
 
-import { AppRoutingModule }     from './app-routing.module';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   imports: [
