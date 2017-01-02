@@ -55,8 +55,8 @@ import { Currency } from '../model/currency';
       width: 500px;
     }
     .selected {
-      background-color: #CFD8DC !important;
-      color: yellow;
+      font-weight: bold;
+      color: red;
     }
   `]
 })
