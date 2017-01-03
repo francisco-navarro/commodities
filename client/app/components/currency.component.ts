@@ -11,8 +11,12 @@ import { Currency } from '../model/currency';
       <h2>List of currencies</h2>
       <ul>
         <li class="currency" *ngFor="let currency of list">
-          <div class="id">{{currency.id}}</div>
-          <div class="name">{{currency.name}}</div>
+          <div 
+            (click)="select(currency)"
+            [class.selected]="currency === selected">
+            <div class="id">{{currency.id}}</div>
+            <div class="name">{{currency.name}}</div>
+          </div>
         </li>
       </ul>
     </div>
@@ -50,16 +54,25 @@ import { Currency } from '../model/currency';
       box-shadow: 1px 1px 5px 0px rgba(0,0,0,2);
       width: 500px;
     }
+    .selected {
+      background-color: #CFD8DC !important;
+      color: yellow;
+    }
   `]
 })
 export class CurrencyComponent implements OnInit {
 
   list : Currency[];
+  selected : Currency;
 
   constructor(private currencyService: CurrencyService) { }
 
   ngOnInit() : void {
     this.currencyService.getCurrencies()
       .then(currencies => this.list = currencies); 
+  }
+
+  select(currency :Currency) : void {
+    this.selected = currency;
   }
 }
