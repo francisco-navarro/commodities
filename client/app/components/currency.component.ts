@@ -25,13 +25,14 @@ import { Currency } from '../model/currency';
     h2 {
       font-family: 'Monserrat', sans-serif;
       font-weight: normal;
-      margin: 10px;
+      margin: 6px;
     }
     ul {
       background-color: #272D4E;
       color: white;
       list-style: none;
       margin-bottom: 0;
+      margin-top: 0;
       text-align: left;
       padding: 15px;
     }
