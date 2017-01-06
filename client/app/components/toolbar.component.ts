@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'commodities-toolbar',
   template: `
-   <div>
+   <div class="float">
     <h1 class="title" [routerLink]="''">
       <i class="material-icons">open_with</i>
       commodities play
@@ -17,9 +17,13 @@ import { Component } from '@angular/core';
       </li>
     </ul>
    </div>
+   <div class="spacer">&nbsp;</div>
   `,
   styles: [`
     div {
+      -webkit-box-shadow: 0px 5px 5px 1px rgba(64,64,64,1);
+      -moz-box-shadow: 0px 5px 5px 1px rgba(64,64,64,1);
+      box-shadow: 0px 5px 5px 1px rgba(64,64,64,1);
       display: inline-block;
       background-color: white;
       color: #263153;
@@ -47,13 +51,21 @@ import { Component } from '@angular/core';
       background-color: #d9dbe2;
       border-bottom: 2px solid #CFD8DC;
     }
+    .float {
+      position: fixed;
+      top: 0;
+    }
     .title {
+      cursor: pointer;
       margin: 10px;
       float: left;
     }
     .selected {
       background-color: #d9dbe2;
       border-bottom: 2px solid #FBC02D !important;
+    }
+    .spacer {
+      height: 50px;
     }
   `]
 })
