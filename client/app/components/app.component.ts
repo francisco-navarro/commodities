@@ -7,7 +7,12 @@ import { Component } from '@angular/core';
    <div class="container">
     <router-outlet></router-outlet>
    </div>
-   <div class="footer"></div>
+   <div class="footer">
+      <i class="mdi mdi-github-box"></i>
+      <i class="mdi mdi-linkedin-box"></i>
+      <i class="mdi mdi-twitter-box"></i>
+      Paco Navarro 2017
+   </div>
   `,
   styles: [`
     .container {
@@ -17,8 +22,14 @@ import { Component } from '@angular/core';
       padding: 35px;
     }
     .footer {
+      color: gray;
       border-top: 1px solid white;
+      font-size: 10px;
       text-align: center;
+    }
+    .footer .mdi {
+      cursor: pointer;
+      font-size: 20px;
     }
   `]
 })
