@@ -7,8 +7,8 @@ import { CurrencyService } from '../services/currency.service';
   template: `
     <div>
       <h2 class="title">
-        <i class="material-icons">face</i>
-        Get started today
+        <i class="material-icons icon" style="color: #FBC02D;">face</i>
+        <span class="caption">Get started today</span>
       </h2>
     </div>
   `,
