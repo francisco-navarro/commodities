@@ -78,8 +78,6 @@ export class CurrencyComponent implements OnInit {
 
   select(currency :Currency) : void {
     this.selected = currency;
-    this.currencyService.getCurrencies().then(values => {
-      this.selected.rates = values;
-    });
+    this.currencyService.getCurrencies();
   }
 }
