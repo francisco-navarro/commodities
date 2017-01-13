@@ -3,7 +3,7 @@ import { Http, Headers } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
-import { Currency } from '../model/currency';
+import { Currency, Rate } from '../model/currency';
 
 @Injectable()
 export class CurrencyService {
@@ -26,7 +26,14 @@ export class CurrencyService {
     var url = `https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.xchange%20where%20pair%20in%20(%22USD${currency.id}%22%2C%20%22USD${currency.id}%22)&format=json&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=`;
     return this.http.get(url).toPromise()
       .then(response => {
-        response.json().query.results.rate;
+        currency.rates = [] as Rate[];
+        response.json().query.results.rate.map(rate => {
+          currency.rates.push({
+            id: rate.id,
+            name: rate.Name,
+            value: parseFloat(rate.Rate)
+          })
+        });
         return currency;
       });
   }

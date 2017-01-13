@@ -1,8 +1,11 @@
 export class Currency {
   id: string;
   name: string;
-  rates: [{
+  rates: Rate[]
+}
+
+export class Rate {
     id: string;
-    Rate: String;
-  }]
+    name: string;
+    value: number;
 }
