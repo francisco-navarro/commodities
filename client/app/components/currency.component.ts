@@ -20,6 +20,11 @@ import { Currency } from '../model/currency';
         </li>
       </ul>
     </div>
+    <div class="list-card" 
+      [class.hidden]="!selected">
+      <h2>Currency</h2>
+      {{selected}}
+    </div>
   `,
   styles: [`
     h2 {
@@ -45,6 +50,9 @@ import { Currency } from '../model/currency';
     }
     .currency .name {
       display: table-cell;
+    }
+    .hidden {
+      display: none;
     }
     .list-card {
       background: white;
