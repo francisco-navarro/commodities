@@ -22,8 +22,12 @@ import { Currency } from '../model/currency';
     </div>
     <div class="list-card" 
       *ngIf="selected">
-      <h2>Currency</h2>
-      {{selected}}
+      <h2>Currency {{selected.name}}</h2>
+      <div class="detail line">
+        <span *ngFor="let rate of selected.rates">
+          {{rate.name}} {{rate.value}}
+        </span>
+      </div>
     </div>
   `,
   styles: [`
@@ -32,7 +36,7 @@ import { Currency } from '../model/currency';
       font-weight: normal;
       margin: 6px;
     }
-    ul {
+    ul, .detail {
       background-color: #272D4E;
       color: white;
       list-style: none;
@@ -57,6 +61,7 @@ import { Currency } from '../model/currency';
       -moz-border-radius: 5px 5px 5px 5px;
       -webkit-border-radius: 5px 5px 5px 5px; 
       border: 1px solid #D7D7D7;
+      margin-top: 10px;
       color: #272D4E;
       -webkit-box-shadow: 1px 1px 5px 0px rgba(0,0,0,2);
       -moz-box-shadow: 1px 1px 5px 0px rgba(0,0,0,2);
@@ -82,7 +87,7 @@ export class CurrencyComponent implements OnInit {
   }
 
   select(currency :Currency) : void {
-    this.selected = currency;
-    this.currencyService.getCurrency(currency);
+    this.currencyService.getCurrency(currency)
+      .then(response => this.selected = response);
   }
 }
