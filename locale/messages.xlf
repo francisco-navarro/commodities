@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="a31a2a0913ea27e72aebcfdc60058a169699c3ba" datatype="html">
+        <source>List of currencies</source>
+        <target/>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

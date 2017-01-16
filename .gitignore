@@ -6,6 +6,6 @@ node_modules/
 bower_components/
 **/app/*.js
 *.map
-client/**/*.js
+client/app/**/*.js
 npm*.log
 *.metadata.json
