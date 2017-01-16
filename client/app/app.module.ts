@@ -1,6 +1,8 @@
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule }    from '@angular/http';
+import { MaterialModule } from '@angular/material';
+import 'lib/hammerjs/hammer.js';
 
 import { AppComponent }       from './components/app.component';
 import { DashboardComponent } from './components/dashboard.component';
@@ -15,7 +17,8 @@ import { AppRoutingModule } from './app-routing.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpModule
+    HttpModule,
+    MaterialModule.forRoot()
   ],
   declarations: [
     AppComponent,
