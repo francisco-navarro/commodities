@@ -1,7 +1,10 @@
 import { TRANSLATIONS, TRANSLATIONS_FORMAT, LOCALE_ID } from '@angular/core';
+
 export function getTranslationProviders(): Promise<Object[]> {
   // Get the locale id from the global
-  const locale = (document['locale'] || navigator.language) as string;
+  let locale = (document['locale'] || navigator.language) as string;
+
+  locale = locale.split(/[\-_]/)[0];
 
   // return no providers if fail to get translation file for locale
   const noProviders: Object[] = [];
@@ -13,6 +16,7 @@ export function getTranslationProviders(): Promise<Object[]> {
 
   // Ex: 'locale/messages.es.xlf`
   const translationFile = `./locale/messages.${locale}.xlf`;
+
   return getTranslationsWithSystemJs(translationFile)
     .then( (translations: string ) => [
       { provide: TRANSLATIONS, useValue: translations },
