@@ -8,7 +8,7 @@ import { Currency } from '../model/currency';
   selector: 'currency',
   template: `
     <div class="list-card">
-      <h2>List of currencies</h2>
+      <h2 i18n>List of currencies</h2>
       <ul>
         <li class="currency" *ngFor="let currency of list">
           <div 
